@@ -1,0 +1,193 @@
+/* 🧱 RESET CƠ BẢN */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background-color: #fff;
+  color: #333;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* 🔷 THANH TRÊN CÙNG */
+.top-bar {
+  background-color: #0099ff;
+  color: white;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 40px;
+}
+
+/* ⚪ HEADER CHÍNH */
+.main-header {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 40px;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo img {
+  height: 60px;
+}
+
+.menu {
+  display: flex;
+  gap: 25px;
+}
+
+.menu a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.menu a:hover,
+.menu a.active {
+  color: #0099ff;
+}
+
+.search-box button {
+  background-color: #0099ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 6px 10px;
+}
+
+/* 🖼️ BANNER */
+.banner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 300px;
+}
+
+.banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(65%);
+}
+
+.banner h2 {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 28px;
+  text-align: center;
+  font-weight: 600;
+  width: 80%;
+}
+
+/* 📄 NỘI DUNG CHÍNH */
+.content {
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+.content p {
+  font-size: 17px;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.content strong {
+  color: #0099ff;
+}
+
+.img-block {
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+  margin: 30px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* 🧭 TIÊU ĐỀ NHỎ */
+.content h3 {
+  color: #0099ff;
+  font-size: 22px;
+  margin: 30px 0 10px;
+  border-left: 4px solid #0099ff;
+  padding-left: 10px;
+}
+
+.content h4 {
+  font-size: 19px;
+  color: #333;
+  margin: 20px 0 10px;
+}
+
+/* 🧩 FOOTER */
+.footer {
+  background-color: #f4f8fc;
+  padding: 50px 60px 20px;
+  margin-top: 60px;
+  border-top: 1px solid #ddd;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-section h3 {
+  font-size: 18px;
+  color: #0099ff;
+  margin-bottom: 15px;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section ul li {
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.footer-section ul li:hover {
+  color: #0099ff;
+  text-decoration: underline;
+}
+
+.cert {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.cert img {
+  width: 80px;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.footer-note {
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+  border-top: 1px solid #ccc;
+  padding-top: 15px;
+}

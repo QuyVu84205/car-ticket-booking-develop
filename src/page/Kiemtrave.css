@@ -1,0 +1,250 @@
+/* =========================================================
+   ======= TOÀN TRANG =======
+========================================================= */
+.kt-container {
+  font-family: "Segoe UI", sans-serif;
+  color: #333;
+  background-color: #fff;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* =========================================================
+   ======= HEADER (THANH MENU TRÊN CÙNG) =======
+========================================================= */
+.kt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 12px 40px;
+  border-bottom: 1px solid #ddd;
+}
+
+.kt-header-logo img {
+  height: 45px;
+}
+
+.kt-header-nav {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.kt-header-nav a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  transition: color 0.3s;
+}
+
+.kt-header-nav a:hover {
+  color: #007bff;
+}
+
+.kt-header-search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.kt-header-search input {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* =========================================================
+   ======= PHẦN FORM KIỂM TRA VÉ =======
+========================================================= */
+.kt-form-section {
+  width: 100%;
+  padding: 40px 0 80px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Hộp chứa form và banner */
+.kt-form-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 50px;
+  width: 90%;
+  max-width: 1150px;
+}
+
+/* ====== CỘT TRÁI (Form nhập) ====== */
+.kt-form-inputs {
+  flex: 1;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.kt-form-inputs h2 {
+  color: #0056b3;
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.kt-form-inputs input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 15px;
+  outline: none;
+  margin-bottom: 12px;
+  transition: border 0.3s;
+}
+
+.kt-form-inputs input:focus {
+  border-color: #007bff;
+}
+
+/* Nút kiểm tra vé */
+.kt-form-inputs button {
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 11px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.kt-form-inputs button:hover {
+  background-color: #0056b3;
+}
+
+/* ====== PHẦN LƯU Ý ====== */
+.kt-note-box {
+  margin-top: 18px;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 12px 14px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  text-align: center;
+}
+
+.kt-note-box strong {
+  color: #000;
+}
+
+/* ====== CỘT PHẢI (Banner) ====== */
+.kt-right-banner {
+  flex: 1.2;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Dòng thông báo xanh nhạt phía trên */
+.kt-banner-note {
+  width: 100%;
+  background-color: #eaf7e2;
+  color: #2d6a4f;
+  text-align: center;
+  font-size: 15px;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 18px;
+}
+
+/* Ảnh banner chính */
+.kt-banner-image {
+  width: 100%;
+  border-radius: 4px;
+  object-fit: contain;
+  border: 1px solid #eee;
+}
+
+/* =========================================================
+   ======= FOOTER =======
+========================================================= */
+.kt-footer {
+  background-color: #fafafa;
+  padding: 40px 60px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  line-height: 1.8;
+}
+
+.kt-footer-column {
+  width: 18%;
+  min-width: 180px;
+  margin-bottom: 25px;
+}
+
+.kt-footer-column h4 {
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.kt-footer-column a {
+  color: #555;
+  font-size: 13px;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.kt-footer-column a:hover {
+  color: #0077cc;
+}
+
+.kt-footer-contact {
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.kt-footer-cert img {
+  margin-top: 10px;
+  height: 50px;
+}
+
+/* =========================================================
+   ======= RESPONSIVE (MOBILE) =======
+========================================================= */
+@media (max-width: 900px) {
+  .kt-form-box {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .kt-right-banner {
+    max-width: 100%;
+  }
+
+  .kt-banner-note {
+    margin-top: 20px;
+  }
+
+  .kt-footer {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .kt-footer-column {
+    width: 100%;
+  }
+}

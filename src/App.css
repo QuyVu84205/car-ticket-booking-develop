@@ -1,0 +1,58 @@
+/* src/App.css - Nền tảng CSS duy nhất cho toàn bộ dự án */
+
+/* BIẾN CSS TỪ HOME.CSS - ĐỊNH NGHĨA BỘ NHẬN DIỆN THƯƠNG HIỆU */
+:root {
+  --blue: #1582e6;
+  --blue2: #0a5fb5;
+  --orange: #ff9a16;
+  --text: #1f2b3a;
+  --muted: #6b7280;
+  --radius: 14px;
+  --shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* RESET CƠ BẢN VÀ ĐỊNH NGHĨA FONT CHUNG */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background-color: #fff; /* Nền trắng mặc định */
+}
+
+/* LOẠI BỎ GIỚI HẠN CỦA VITE */
+#root {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+/* CLASS CONTAINER DÙNG CHUNG */
+.container {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+}
+
+/* CÁC STYLE CHUNG KHÁC NẾU CẦN */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  border: none;
+}

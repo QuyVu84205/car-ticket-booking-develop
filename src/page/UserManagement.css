@@ -1,0 +1,256 @@
+/* ====== TOÀN TRANG ====== */
+.usermanagement-container {
+  font-family: "Segoe UI", sans-serif;
+  color: #333;
+  background-color: #fff;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* ====== THANH TRÊN CÙNG ====== */
+.top-bar {
+  background-color: #0099ff;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  padding: 6px 60px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ====== HEADER ====== */
+.main-header {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 60px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.main-header .logo img {
+  height: 48px;
+}
+
+.menu {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  font-weight: 600;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #0074cc;
+  font-size: 15px;
+  transition: 0.3s;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.menu a:hover,
+.menu a.active {
+  color: #fff;
+  background-color: #0099ff;
+}
+
+.search-box button {
+  background-color: #ffc107;
+  border: none;
+  color: white;
+  font-size: 18px;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.search-box button:hover {
+  background-color: #e0a800;
+}
+
+/* ====== PHẦN CHÍNH ====== */
+.form-section {
+  padding: 60px 80px;
+  background-color: #f7f9fb;
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-section h2 {
+  text-align: center;
+  color: #0074cc;
+  margin-bottom: 30px;
+  font-size: 26px;
+}
+
+/* ✅ KHỐI NỘI DUNG FULL WIDTH */
+.user-management {
+  background: white;
+  padding: 40px 50px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  max-width: 100%;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* === FORM THÊM/SỬA USER === */
+.user-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 25px;
+  justify-content: center;
+}
+
+.user-form input,
+.user-form select {
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  min-width: 200px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.user-form input:focus,
+.user-form select:focus {
+  border-color: #0099ff;
+}
+
+.user-form button {
+  background-color: #0099ff;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.user-form button:hover {
+  background-color: #007acc;
+}
+
+/* === BẢNG NGƯỜI DÙNG === */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+.user-table th,
+.user-table td {
+  border: 1px solid #ddd;
+  padding: 10px 14px;
+  text-align: left;
+}
+
+.user-table th {
+  background-color: #0099ff;
+  color: white;
+  font-weight: 600;
+}
+
+.user-table tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.user-table tr:hover {
+  background-color: #eef6ff;
+}
+
+.user-table button {
+  margin-right: 6px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.2s;
+}
+
+.user-table button:hover {
+  transform: scale(1.1);
+}
+
+/* ====== FOOTER ====== */
+.footer {
+  background-color: #fdfafa;
+  padding: 50px 80px 30px 80px;
+  color: #333;
+  font-size: 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 40px;
+}
+
+.footer-section h3 {
+  color: #333;
+  font-size: 16px;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 6px;
+  color: #555;
+  line-height: 1.5;
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+.footer-section ul li:hover {
+  color: #0099ff;
+}
+
+.footer-section p {
+  margin: 4px 0;
+  line-height: 1.6;
+}
+
+.footer-section strong {
+  color: #0074cc;
+}
+
+.cert {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.cert img {
+  height: 40px;
+}
+
+.footer-copyright {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 14px;
+  color: #777;
+  border-top: 1px solid #ddd;
+  padding-top: 15px;
+}

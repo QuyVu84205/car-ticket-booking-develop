@@ -1,0 +1,694 @@
+:root{
+  --blue:#1582e6; --blue2:#0a5fb5;
+  --orange:#ff9a16;
+  --text:#1f2b3a; --muted:#6b7280;
+  --radius:14px; --shadow:0 12px 32px rgba(0,0,0,.12);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;color:var(--text)}
+.container{width:min(1200px,92%);margin:0 auto}
+
+/* Topbar */
+.topbar{background:var(--blue);color:#eaf4ff;font-size:13px}
+.topbar .container{display:flex;justify-content:space-between;align-items:center;padding:6px 0}
+.topbar a{color:#eaf4ff;text-decoration:none}
+.topbar .sep{display:inline-block;width:1px;height:14px;background:#fff3;margin:0 12px}
+
+/* Navbar */
+.navbar{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:30}
+.nav-inner{display:flex;align-items:center;gap:18px;padding:10px 0}
+.brand img{height:42px}
+.menu{list-style:none;display:flex;gap:18px;margin:0 auto 0 8px;padding:0}
+.menu a{color:var(--text);text-decoration:none;font-weight:600;padding:10px 12px;border-radius:10px}
+.menu .active a, .menu a:hover{background:rgba(21,130,230,.08);color:var(--blue)}
+.search-mini{border:none;background:var(--orange);color:#fff;border-radius:10px;padding:8px 12px;cursor:pointer}
+
+/* HERO */
+/* ==== HERO Responsive cho mọi kích thước ==== */
+.hero {
+  position: relative;
+  background: url("/vivutoday.jpg") no-repeat center top;
+  background-size: contain;             /* co vừa theo chiều ngang */
+  background-position: center top;
+  background-repeat: no-repeat;
+  width: 100%;
+  aspect-ratio: 16 / 6;                 /* tự co chiều cao theo tỉ lệ ảnh (điều chỉnh được) */
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 60px;
+  box-sizing: border-box;
+}
+
+.hero-inner{position:relative;z-index:1}
+
+.search-card{
+  position:absolute; left:50%; transform:translateX(-50%); bottom:240px;
+  width:min(94vw,1500px);
+  padding:30px 15px 32.53px 15px;
+  border-radius:10px;
+  background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,.35));
+  border:1px solid rgba(15,31,53,.08);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.7),
+    0 0 0 1px rgba(15,31,53,.06),
+    0 14px 36px rgba(0,0,0,.12);
+  backdrop-filter:blur(8px);
+  display:flex; align-items:center; justify-content:center;
+  z-index:5;
+}
+
+.search-card-inner{
+  width:100%; max-width:1450px; height:160px;
+  display:grid; grid-template-columns:repeat(4,278px); gap:20px;
+  justify-content:space-between; align-items:center; padding:0;
+  border:1px solid #E0E0E0; border-radius:6px; background:rgba(255,255,255,.92);
+}
+
+/* Field */
+.search-card-inner .field {
+  width: 100%;                     /* Cho tự co đều theo grid */
+  height: 100px;                   /* Tăng chiều cao nhẹ cho cân */
+  border-radius: 12px;             /* Bo mềm hơn */
+  border: 1px solid rgba(21,130,230,0.25);  /* Viền xanh nhạt tinh tế */
+  background: #fff;                /* Màu nền trắng tinh, không gradient */
+  box-shadow: 0 4px 14px rgba(21,130,230,0.05);  /* Bóng nhẹ */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+  transition: all 0.25s ease;
+}
+
+.search-card-inner .field:hover {
+  border-color: #1582e6;
+  box-shadow: 0 8px 22px rgba(21,130,230,0.12);
+  transform: translateY(-2px);
+}
+
+.search-card-inner .field label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0a5fb5;
+  margin: 0;
+}
+
+.search-card-inner .field input {
+  border: none;
+  background: transparent;
+  outline: none;
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+  width: 100%;
+  max-width: 90%;
+}
+
+.search-card-inner .field input::placeholder {
+  color: #8fa2b3;
+}
+
+.search-card-inner .field input[type="date"]::-webkit-inner-spin-button,
+.search-card-inner .field input[type="date"]::-webkit-calendar-picker-indicator{ filter:opacity(.75); }
+
+
+.search-card-inner .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 18px 36px rgba(255,165,0,.45); }
+
+
+
+/* ====== CÁC PHẦN DƯỚI GIỮ NGUYÊN (rút gọn không đụng tới) ====== */
+
+.section{padding:60px 0;background:#fff}
+.section.alt{background:#f7fafc}
+.section-title{position:relative;margin:0 0 24px;padding-left:18px;font-size:26px;font-weight:700}
+.section-title::before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:6px;background:var(--orange);border-radius:3px}
+
+/* Tuyến đường phổ biến */
+.routes-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:25px;justify-items:center;align-items:stretch}
+.route-item{background:#fff;border-radius:14px;overflow:hidden;width:100%;max-width:260px;display:flex;flex-direction:column;box-shadow:0 8px 20px rgba(0,0,0,.08);transition:transform .25s, box-shadow .25s}
+.route-item img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.route-info{flex-grow:1;padding:12px 16px;text-align:left;display:flex;flex-direction:column;justify-content:space-between}
+.route-info h3{font-size:16px;font-weight:700;color:#0a5fb5;margin:0 0 8px;line-height:1.35;min-height:42px}
+.route-info p{color:#009933;font-weight:700;font-size:14px;margin:0}
+.route-item:hover{transform:translateY(-6px);box-shadow:0 10px 25px rgba(255,165,0,.3)}
+@media (max-width:992px){.routes-list{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.routes-list{grid-template-columns:1fr}}
+
+/* Cards chung / bus-list */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.bus-list{display:flex;gap:25px;flex-wrap:wrap;justify-content:center}
+.bus-card{width:260px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.08);transition:transform .25s, box-shadow .25s;cursor:pointer;text-align:center}
+.bus-card img{width:100%;height:170px;object-fit:cover;display:block}
+.bus-card h3{font-size:16px;font-weight:700;color:#222;margin:12px 0 16px}
+.bus-card:hover{transform:translateY(-5px);box-shadow:0 10px 25px rgba(255,165,0,.3)}
+
+/* Top reviews (giữ nguyên) */
+.top-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:170px;gap:16px;grid-auto-flow:dense}
+.tile{position:relative;display:block;border-radius:12px;overflow:hidden;background-size:cover;background-position:center;box-shadow:0 10px 24px rgba(0,0,0,.12);transition:transform .25s, box-shadow .25s, filter .25s}
+.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.45),rgba(0,0,0,.08))}
+.tile:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 16px 32px rgba(0,0,0,.2);filter:brightness(1.05)}
+.tile__cap{position:absolute;left:16px;bottom:14px;color:#fff;z-index:1}
+.tile__cap h3{margin:0 0 4px;font-size:19px;font-weight:800}
+.tile__cap span{font-size:13px;opacity:.9}
+.tile.big{grid-column:span 2;grid-row:span 2}
+.tile.tall{grid-row:span 2}
+.tile.wide{grid-column:span 2}
+@media (max-width:992px){.top-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px}.tile.big,.tile.wide{grid-column:span 2}}
+@media (max-width:640px){.top-grid{grid-template-columns:1fr;grid-auto-rows:200px}.tile.big,.tile.tall,.tile.wide{grid-column:span 1;grid-row:span 1}}
+
+/* Press logos */
+.press-logos{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:28px;align-items:center;justify-items:center;padding:8px 0}
+.press-logos img{height:40px;width:auto;object-fit:contain;transition:filter .2s, opacity .2s, transform .2s}
+.press-logos img:hover{filter:grayscale(0);opacity:1;transform:translateY(-2px)}
+@media (max-width:992px){.press-logos{grid-template-columns:repeat(3,1fr);gap:22px}.press-logos img{height:36px}}
+@media (max-width:640px){.press-logos{grid-template-columns:repeat(2,1fr);gap:18px}.press-logos img{height:32px}}
+
+/* Footer */
+.site-footer{background:#fbf6f3;border-top:1px solid #f1eae6;color:#374151}
+.footer-grid{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:28px 32px;padding:36px 0 12px}
+.ft-col h4{margin:0 0 10px;font-size:15px;font-weight:800;color:#111827}
+.ft-col ul{list-style:none;margin:0;padding:0}
+.ft-col ul li{margin:8px 0}
+.ft-col a{color:#4b5563;text-decoration:none}
+.ft-col a:hover{color:#111827;text-decoration:underline}
+.ft-col.contact p{margin:8px 0 10px;line-height:1.45}
+.mt16{margin-top:16px}
+.badges .badge-list{display:grid;grid-template-columns:repeat(1,120px);gap:10px;align-items:start}
+.badges img{width:120px;height:auto;background:#fff;border-radius:8px;border:1px solid #eee;box-shadow:0 6px 14px rgba(0,0,0,.06);padding:6px}
+.footer-bottom{border-top:1px solid #efe8e3;margin-top:20px;padding:14px 0;font-size:14px;color:#6b7280}
+@media (max-width:1200px){.footer-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.badges .badge-list{grid-template-columns:repeat(2,120px)}}
+@media (max-width:768px){.footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.badges .badge-list{grid-template-columns:repeat(2,110px)}}
+@media (max-width:480px){.footer-grid{grid-template-columns:1fr}.badges .badge-list{grid-template-columns:repeat(3,1fr)}.badges img{width:100%}}
+.search-card-inner {
+  grid-template-columns: repeat(4, 1fr); /* 4 cột đều nhau */
+  gap: 24px;                             /* khoảng cách hợp lý hơn */
+}
+/* TẠCH KHUNG: thêm khoảng đệm trong */
+.search-card-inner{
+  padding: 16px 18px;      /* ← tạo mép trái/phải/trên/dưới, hết dính viền */
+  box-sizing: border-box;  /* đảm bảo padding không làm vỡ kích thước */
+}
+/* === CĂN LẠI Ô NÚT CAM CHO ĐỀU 3 Ô CÒN LẠI === */
+.search-card-inner .btn-primary{
+  width: 320px;
+  height: 100px;                 /* bằng với chiều cao 3 ô */
+  border-radius: 12px;           /* cùng bo góc */
+  border: 1px solid rgba(255,140,0,.35);
+  background: #FF9A16;
+  color: #fff;
+  font-weight: 800;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(255,165,0,.35);
+  transition: transform .15s ease, box-shadow .15s ease;
+  margin: 0;                     /* tránh lệch do margin mặc định */
+  line-height: normal;           /* khóa độ cao nội dung */
+  box-sizing: border-box;        /* tránh phình chiều cao */
+}
+.search-card-inner .btn-primary:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(255,165,0,.45);
+}
+/* ===== Navbar mobile ===== */
+.hamburger{ display:none; }
+
+@media (max-width:768px){
+  .topbar{ display:none; } /* ẩn topbar cho gọn */
+  .navbar{ position:sticky; top:0; z-index:40; border-bottom:1px solid #e5e7eb; }
+  .nav-inner{ padding:10px 0; justify-content:space-between; }
+  .brand img{ height:36px; }
+  .menu{ display:none; }           /* ẩn menu desktop */
+  .hamburger{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:40px; height:40px; border:none; background:#fff; border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,.08); font-size:20px; cursor:pointer;
+  }
+  /* Drawer trượt */
+  .mobile-drawer{
+    position:fixed; inset:0 0 0 auto; width:78%;
+    transform:translateX(100%); transition:transform .25s ease;
+    background:#fff; box-shadow:-16px 0 40px rgba(0,0,0,.18); z-index:50; padding:16px;
+    display:flex; flex-direction:column; gap:8px;
+  }
+  .mobile-drawer.open{ transform:translateX(0); }
+  .mobile-drawer .drawer-close{
+    align-self:flex-end; border:none; background:#fff; font-size:22px; cursor:pointer;
+    width:36px; height:36px; border-radius:10px; box-shadow:0 3px 10px rgba(0,0,0,.08);
+  }
+  .mobile-drawer ul{ list-style:none; padding:10px 0 0; margin:0; display:flex; flex-direction:column; gap:8px; }
+  .mobile-drawer a{
+    display:block; padding:12px 10px; border-radius:10px; text-decoration:none; color:#0f172a; font-weight:700;
+  }
+  .mobile-drawer a:hover{ background:rgba(21,130,230,.08); color:#0a5fb5; }
+}
+
+/* ===== Search card mobile ===== */
+@media (max-width:768px){
+  .hero{ min-height:520px; padding-bottom:40px; background-size:cover; }
+  .search-card{
+    bottom: 180px; width: 94vw; padding: 16px; border-radius: 12px;
+    box-shadow: 0 10px 26px rgba(0,0,0,.12);
+  }
+  .search-card-inner{
+    width:100%; height:auto; padding:14px;
+    grid-template-columns:1fr; gap:12px; justify-content:initial; align-items:stretch;
+    border-radius:10px;
+  }
+  .search-card-inner .field,
+  .search-card-inner .btn-primary{
+    width:100%; height:64px; border-radius:10px; box-sizing:border-box;
+  }
+  .search-card-inner .field label{ font-size:14px; }
+  .search-card-inner .field input{ font-size:14px; }
+  .search-card-inner .btn-primary{ font-size:16px; font-weight:800; }
+}
+/* ===== MOBILE DRAWER (ẩn trên desktop, chỉ hiện khi bấm ☰) ===== */
+
+/* Ẩn hoàn toàn trên desktop */
+@media (min-width: 993px){
+  .mobile-drawer{ display: none !important; }
+  .hamburger{ display: none !important; }
+}
+
+/* Hiển thị chế độ mobile */
+@media (max-width: 992px){
+  /* Nút hamburger */
+  .hamburger{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; height: 40px;
+    font-size: 20px;
+    border: none; background: transparent; cursor: pointer;
+    margin-right: 8px;
+  }
+  /* Ẩn menu ngang & search mini trên mobile */
+  .menu{ display: none !important; }
+  .search-mini{ display: none !important; }
+
+  /* Ngăn body trượt theo khi mở drawer (tùy bạn bật/tắt class ở JS nếu muốn) */
+  body.nav-open{ overflow: hidden; }
+
+  /* Drawer */
+  .mobile-drawer{
+    position: fixed;
+    top: 0; left: -100%;
+    width: 280px; height: 100vh;
+    background: #fff;
+    box-shadow: 4px 0 24px rgba(0,0,0,.18);
+    z-index: 200;                 /* cao hơn .navbar */
+    transition: left .25s ease;
+    padding: 56px 16px 20px;
+  }
+  .mobile-drawer.open{ left: 0; }
+
+  /* Nút đóng */
+  .mobile-drawer .drawer-close{
+    position: absolute;
+    top: 8px; left: 8px;
+    width: 36px; height: 36px;
+    border: none; background: transparent; cursor: pointer;
+    font-size: 22px; line-height: 1;
+  }
+
+  /* Danh sách link */
+  .mobile-drawer ul{
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .mobile-drawer li a{
+    display: block;
+    padding: 12px 10px;
+    border-radius: 8px;
+    color: #111827; text-decoration: none; font-weight: 600;
+  }
+  .mobile-drawer li a:hover{
+    background: rgba(21,130,230,.08);
+    color: #0a5fb5;
+  }
+}
+/* ===== MOBILE REWORK FOR SEARCH BAR (≤ 768px) ===== */
+@media (max-width: 768px){
+
+  /* khung ngoài: vừa màn, đổ bóng nhẹ */
+  .search-card{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 92vw;
+    padding: 14px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.75);
+    border: 1px solid rgba(15,31,53,.06);
+    box-shadow: 0 10px 26px rgba(0,0,0,.12);
+  }
+
+  /* khung trong: trắng tinh, padding đều, xếp dọc */
+  .search-card-inner{
+    width: 100%;
+    max-width: none;
+    height: auto;
+    border-radius: 12px;
+    border: 1px solid #E0E0E0;
+    background: #fff;
+    padding: 12px;
+    display: grid;
+    grid-template-columns: 1fr;   /* 1 cột */
+    gap: 12px;                    /* khoảng cách đều */
+    justify-content: initial;     /* bỏ space-between trên desktop */
+    align-items: stretch;
+    box-sizing: border-box;
+  }
+
+  /* từng ô nhập liệu: border xanh nhạt, cao ~72-76px */
+  .search-card-inner .field{
+    width: 100%;
+    height: 74px;
+    border-radius: 12px;
+    border: 1px solid rgba(21,130,230,0.25);
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(21,130,230,0.06);
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    gap: 6px;
+    text-align: center;
+    padding: 10px 12px;
+    transition: none;              /* tránh nhún trên mobile */
+  }
+
+  .search-card-inner .field label{
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0a5fb5;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .search-card-inner .field input{
+    width: 100%;
+    max-width: 95%;
+    text-align: center;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 13.5px;
+    color: #222;
+    padding: 0;
+  }
+
+  /* nút cam: full width, cùng style với ô, đặt cuối */
+  .search-card-inner .btn-primary{
+    width: 100%;
+    height: 60px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,140,0,.35);
+    background: #FF9A16;
+    color: #fff;
+    font-weight: 800;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 14px 30px rgba(255,165,0,.38);
+    transform: none;
+  }
+  .search-card-inner .btn-primary:hover{ transform: none; }
+
+  /* hero cao vừa phải để khung không đè */
+  .hero{
+    min-height: 520px;
+    padding-bottom: 16px;
+    background-size: cover;
+  }
+}
+/* Ngăn tràn ngang toàn trang */
+html, body { overflow-x: hidden; }
+
+/* Fix lệch 390px: bỏ left/transform, dùng width an toàn và căn giữa */
+@media (max-width: 768px){
+  .search-card{
+    position: relative;
+    left: auto;
+    transform: none;
+    /* bề rộng an toàn: không vượt màn hình, vẫn có khoảng thở  */
+    width: min(92vw, 360px);
+    max-width: 100%;
+    margin: 0 auto;          /* căn giữa khối */
+    box-sizing: border-box;   /* tính cả viền & padding vào width */
+  }
+
+  /* Khung trong chiếm toàn bộ chiều ngang của search-card */
+  .search-card-inner{
+    width: 100%;
+    max-width: none;
+    padding: 12px;
+    gap: 12px;
+  }
+}
+/* ===== MOBILE ≤ 420px: hero thu nhỏ + search-card xuống dưới ===== */
+@media (max-width: 420px){
+  /* 1) Ảnh nền hero thu nhỏ vừa khung, không cần overlay form */
+  .hero{
+    min-height: 260px;             /* đủ hiển thị banner */
+    padding-bottom: 0;             /* bỏ khoảng chừa form */
+    background-size: contain;      /* thu nhỏ vừa 390px, giữ tỷ lệ */
+    background-position: center top;
+    background-repeat: no-repeat;
+  }
+
+  /* 2) Đưa search-card xuống dưới, chiếm full chiều ngang “an toàn” */
+  .search-card{
+    position: static;              /* bỏ absolute */
+    left: auto; transform: none; bottom: auto;
+    width: calc(100% - 24px);      /* hai mép trái/phải thoáng 12px */
+    max-width: 390px;
+    margin: 8px auto 0;            /* canh giữa dưới banner */
+    padding: 14px;                 /* đệm gọn gàng hơn */
+    border-radius: 12px;
+  }
+
+  /* 3) Bên trong: xếp dọc, bỏ chiều cao cố định */
+  .search-card-inner{
+    height: auto;                  /* override height:160px cũ */
+    grid-template-columns: 1fr;    /* 1 cột */
+    gap: 12px;
+    padding: 12px;                 /* thêm đệm trong */
+    box-sizing: border-box;
+  }
+
+  /* 4) Kích thước từng ô & nút cho mobile */
+  .search-card-inner .field{
+    width: 100%;
+    height: 72px;                  /* gọn tay bấm */
+    border-radius: 10px;
+  }
+  .search-card-inner .field label{
+    font-size: 13.5px;
+  }
+  .search-card-inner .field input{
+    font-size: 13px;
+  }
+  .search-card-inner .btn-primary{
+    width: 100%;
+    height: 56px;                  /* nút thấp hơn cho mobile */
+    border-radius: 10px;
+    font-weight: 700;
+  }
+}
+/* === MOBILE FIX: 390px (≤420) — cho form xuống dưới ảnh === */
+@media (max-width: 420px){
+  .hero{
+    min-height: 280px !important;
+    padding-bottom: 0 !important;
+    background-size: contain !important;       /* thu nhỏ vừa khung 390 */
+    background-position: center top !important;
+    background-repeat: no-repeat !important;
+  }
+
+  /* BỎ absolute để không đè lên ảnh */
+  .search-card{
+    position: static !important;
+    left: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+
+    width: calc(100% - 24px) !important;       /* chừa 12px mỗi bên */
+    max-width: 390px !important;
+    margin: 10px auto 0 !important;            /* đặt dưới ảnh, canh giữa */
+    padding: 14px !important;
+    border-radius: 12px !important;
+  }
+
+  /* Bên trong: xếp dọc, bỏ cao cố định */
+  .search-card-inner{
+    height: auto !important;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    padding: 12px !important;
+    box-sizing: border-box !important;
+  }
+
+  .search-card-inner .field{
+    height: 72px !important;
+    border-radius: 10px !important;
+  }
+  .search-card-inner .btn-primary{
+    height: 56px !important;
+    border-radius: 10px !important;
+    width: 100% !important;
+  }
+}
+/* ==== FIX CHO MÀN ≤ 420px: không đè lên ảnh, kéo form xuống dưới ==== */
+@media (max-width: 420px){
+  .hero{
+    min-height: 280px !important;
+    padding-bottom: 0 !important;
+    background-size: contain !important;
+    background-position: center top !important;
+  }
+
+  /* QUAN TRỌNG: bỏ absolute + bottom của desktop */
+  .hero .search-card{
+    position: static !important;
+    left: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+
+    width: calc(100% - 24px) !important;   /* chừa 12px hai bên */
+    max-width: 390px !important;
+    margin: 12px auto 0 !important;        /* nằm dưới ảnh, canh giữa */
+    padding: 14px !important;
+    border-radius: 12px !important;
+  }
+
+  .hero .search-card-inner{
+    height: auto !important;
+    grid-template-columns: 1fr !important; /* xếp dọc */
+    gap: 12px !important;
+    padding: 12px !important;
+    box-sizing: border-box !important;
+  }
+
+  .hero .search-card-inner .field{ height: 72px !important; border-radius:10px !important; }
+  .hero .search-card-inner .btn-primary{ height: 56px !important; border-radius:10px !important; width:100% !important; }
+}
+@media (max-width: 768px) {
+  .search-card {
+    position: static !important;
+    margin: 12px auto 0 !important;
+    width: calc(100% - 24px) !important;
+    max-width: 420px !important;
+  }
+}
+/* ===== Fix riêng cho màn ~390px ===== */
+@media (max-width: 390px) {
+
+  /* Ảnh nền hero: 390 x 240, cách trên 92px */
+  .hero{
+    /* kích thước khung hiển thị */
+    width: 100%;                 /* dùng 100% để không tràn; khống chế bằng max-width */
+    max-width: 390px;
+    height: 240px;
+
+    /* vị trí & hiển thị ảnh nền */
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: contain;    /* đảm bảo không bị cắt ảnh */
+
+    /* đẩy hero xuống dưới 92px so với navbar/đỉnh trang */
+    margin: 92px auto 0;
+
+    /* bỏ các padding/bottom để không đẩy form chồng lên ảnh */
+    padding: 0;
+
+    /* các giá trị còn lại theo yêu cầu */
+    opacity: 1;
+    transform: none;             /* angle: 0deg */
+    box-sizing: border-box;
+  }
+
+  /* Kéo khung tìm kiếm xuống dưới banner, vừa màn */
+  .search-card{
+    position: static !important;
+    margin: 12px auto 0 !important;
+    width: calc(100% - 24px) !important;   /* chừa 12px mỗi bên */
+    max-width: 390px !important;
+  }
+
+  .search-card-inner{
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    padding: 12px !important;
+  }
+
+  .search-card-inner .field{ height: 72px !important; }
+  .search-card-inner .btn-primary{ height: 56px !important; }
+}
+
+/* Ngăn tràn ngang */
+html, body { overflow-x: hidden; }
+/* 1) Khóa tràn ngang toàn trang */
+html, body, #root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;     /* chặn tràn ngang */
+}
+
+/* 2) Header/navbar luôn bám theo bề ngang viewport */
+.topbar,
+.navbar {
+  width: 100%;
+  max-width: 100vw;
+}
+
+.navbar .container,
+.topbar .container {
+  width: 100%;
+  max-width: 100%;
+  padding-left: 12px;
+  padding-right: 12px;     /* tránh tổng width > 100vw */
+  box-sizing: border-box;
+}
+
+/* 3) Drawer mobile: dùng transform để không đội layout (tránh tràn) */
+@media (max-width: 992px) {
+  .mobile-drawer {
+    position: fixed;
+    top: 0; left: 0;
+    width: 280px; height: 100vh;
+    transform: translateX(-100%);      /* ẩn hẳn ra ngoài mà không ảnh hưởng layout */
+    transition: transform .25s ease;
+    /* bỏ các cách ẩn dạng left:-100% vì một số trình duyệt vẫn tính vào chiều rộng tổng */
+  }
+  .mobile-drawer.open {
+    transform: translateX(0);
+  }
+}
+
+/* 4) Chốt lại các khối lớn không vượt 100vw */
+.hero,
+.search-card,
+.search-card-inner {
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+/* 5) Nếu form search đang dùng left:50% + translateX(-50%), đảm bảo tắt trên mobile */
+@media (max-width: 420px) {
+  .search-card {
+    position: static !important;
+    left: auto !important;
+    transform: none !important;
+    width: calc(100% - 24px) !important;  /* chừa 12px mỗi mép */
+    margin: 12px auto 0 !important;
+  }
+}
