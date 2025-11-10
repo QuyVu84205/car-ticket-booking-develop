@@ -17,7 +17,7 @@ import Booking from "./page/Booking";
 import Baiviet from "./page/Baiviet";
 import Kiemtrave from "./page/Kiemtrave";
 import UserManagement from "./page/UserManagement";
-
+import BusManagement from "./pages/BusManagement.jsx";
 // Layout bọc Header + Outlet
 import MainLayout from "./layouts/MainLayout.jsx";
 
@@ -45,6 +45,11 @@ export default function App() {
           <Route path="/baiviet" element={<Baiviet />} />
           <Route path="/kiemtrave" element={<Kiemtrave />} />
           <Route path="/usermanagement" element={<UserManagement />} />
+
++         {/* Trang quản lý xe (tạm public, sau sẽ bọc RequireAdmin) */}
++         <Route path="/admin/bus-management" element={<BusManagement />} />
++         {/* Alias tiếng Việt nếu cần */}
++         <Route path="/quan-ly-xe" element={<Navigate to="/admin/bus-management" replace />} />
 
           {/* Alias/redirect để không bị trắng trang khi dùng slug tiếng Việt */}
           <Route path="/ben-xe" element={<Navigate to="/bus-station" replace />} />

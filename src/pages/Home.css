@@ -139,10 +139,47 @@ body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;color
 /* Cards chung / bus-list */
 .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .bus-list{display:flex;gap:25px;flex-wrap:wrap;justify-content:center}
-.bus-card{width:260px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.08);transition:transform .25s, box-shadow .25s;cursor:pointer;text-align:center}
-.bus-card img{width:100%;height:170px;object-fit:cover;display:block}
-.bus-card h3{font-size:16px;font-weight:700;color:#222;margin:12px 0 16px}
-.bus-card:hover{transform:translateY(-5px);box-shadow:0 10px 25px rgba(255,165,0,.3)}
+/* ==== BUS CARD dùng chung (Home + Nhà xe + Bến xe) ==== */
+
+.bus-card{
+  border:1px solid #ddd;
+  border-radius:12px;
+  overflow:hidden;
+  background:#fff;
+  transition:transform .2s ease, box-shadow .2s ease;
+  cursor:pointer;
+  text-align:left;
+  width:100%;
+}
+.bus-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 6px 16px rgba(0,0,0,.1);
+}
+
+/* ảnh đồng bộ */
+.bus-card img{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+  display:block;
+}
+
+/* nội dung card */
+.bus-body{
+  padding:12px;
+}
+.bus-body h3{
+  margin:0;
+  font-size:16px;
+  color:#004aad;
+  font-weight:700;
+}
+.bus-body p{
+  margin:4px 0;
+  font-size:14px;
+  color:#333;
+}
+
 
 /* Top reviews (giữ nguyên) */
 .top-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:170px;gap:16px;grid-auto-flow:dense}
@@ -691,4 +728,575 @@ html, body, #root {
     width: calc(100% - 24px) !important;  /* chừa 12px mỗi mép */
     margin: 12px auto 0 !important;
   }
+}
+/* ===== HOME: khóa kích thước thẻ để không bị kéo dãn ===== */
+.home-page .container{
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Dùng flex cho Home để kiểm soát bề rộng thẻ */
+.home-page .bus-grid{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;      /* căn giữa cả hàng */
+}
+
+/* Thẻ ở Home: KHÓA width cố định giống mẫu, không ăn full cột */
+.home-page .bus-card{
+  width: 280px;                 /* 260–300px đều ok; chọn 280px nhìn thoáng */
+  max-width: 100%;
+  text-align: left;             /* giống Bến xe */
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.home-page .bus-card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,.1);
+}
+
+/* Ảnh: theo tỉ lệ, không kéo dãn */
+.home-page .bus-card img{
+  width: 100%;
+  height: auto;                 /* bỏ height cố định */
+  aspect-ratio: 16 / 9;         /* đồng đều như mẫu */
+  object-fit: cover;
+  display: block;
+}
+
+/* Nội dung thẻ */
+.home-page .bus-body{ padding: 12px; }
+.home-page .bus-body h3{
+  margin: 0; font-size: 16px; color: #004aad; font-weight: 700;
+}
+.home-page .bus-body p{
+  margin: 4px 0; font-size: 14px; color: #333;
+}
+
+/* Responsive: mobile cho full hàng một thẻ */
+@media (max-width: 640px){
+  .home-page .bus-card{ width: 100%; max-width: 420px; }
+  .home-page .bus-grid{ justify-content: center; }
+}
+/* ===== HOME: 4 card / hàng như mẫu ===== */
+.home-page .container{
+  max-width: 1200px;           /* ↑ từ 1100 -> 1200 để đủ chỗ cho 4 ô */
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Dùng flex để cố định bề rộng thẻ, không bị kéo dãn */
+.home-page .bus-grid{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;                   /* khoảng cách giữa các ô */
+  justify-content: center;     /* căn giữa hàng */
+}
+
+/* Mỗi thẻ 260px -> 4 thẻ + 3 khoảng 20px = 1040 + 60 = 1100px
+   + padding container (32px) = 1132px  <= 1200px -> VỪA */
+.home-page .bus-card{
+  width: 260px;
+}
+
+/* Ảnh không méo, đồng đều */
+.home-page .bus-card img{
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+/* Responsive: tự về 3-2-1 cột */
+@media (max-width: 1180px){     /* còn ~1100px → 3 ô/hàng */
+  .home-page .bus-card{
+    width: calc((100% - 2*20px)/3);
+  }
+}
+@media (max-width: 900px){      /* 2 ô/hàng */
+  .home-page .bus-card{
+    width: calc((100% - 1*20px)/2);
+  }
+}
+@media (max-width: 560px){      /* 1 ô/hàng, căn giữa */
+  .home-page .bus-card{
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+}
+/* ===== HOME ONLY — layout danh sách card ===== */
+.home-cards{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+}
+
+@media (max-width: 1180px){ .home-cards{ grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 900px){  .home-cards{ grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px){  .home-cards{ grid-template-columns: 1fr; } }
+
+/* ===== HOME ONLY — card mini theo đúng vibe mẫu ===== */
+.home-bus-card{
+  border: 1px solid #e6e8ec;
+  border-radius: 14px;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.home-bus-card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 10px 26px rgba(0,0,0,.12);
+  border-color: #dfe2e6;
+}
+
+/* Khung ảnh 16:9, bo tròn trên, ảnh phủ kín khung */
+.home-bus-card .media{
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+.home-bus-card .media img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Thanh nhấn nhẹ ở mép dưới ảnh (giống cảm giác ribbon) */
+.home-bus-card .media::after{
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #ffa73533, #0a5fb522);
+}
+
+/* Nội dung */
+.home-bus-card .body{ padding: 10px 14px 14px; }
+.home-bus-card .body h3{
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: #0a5fb5;
+  line-height: 1.35;
+  letter-spacing: .2px;
+}
+
+/* (Tuỳ chọn) Nếu muốn tiêu đề luôn trên một dòng và cắt ... */
+.home-bus-card .body h3{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* Ổn định layout khi bật/tắt scrollbar lúc F12 */
+html{ scrollbar-gutter: stable both-edges; }
+*,*::before,*::after{ box-sizing: border-box; }
+
+/* Container cùng khung với các section khác */
+.home-page .container{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* === TUYẾN ĐƯỜNG PHỔ BIẾN: responsive nhưng giữ mẫu === */
+.routes-list{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(260px, 1fr)); /* 4 ô/hàng khi đủ chỗ */
+  gap: 24px;
+  align-items: stretch;
+}
+
+.route-item{
+  background:#fff;
+  border-radius:14px;
+  overflow:hidden;
+  width:100%;                 /* KHÔNG để width cố định */
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+  transition:transform .25s, box-shadow .25s;
+}
+.route-item:hover{ transform:translateY(-6px); box-shadow:0 10px 25px rgba(255,165,0,.30); }
+
+/* Ảnh giữ đúng tỷ lệ như mẫu, không méo */
+.route-item img{
+  width:100%;
+  aspect-ratio:16/9;          /* thay cho height cố định */
+  object-fit:cover;
+  display:block;
+}
+
+/* Phần text vẫn giữ style cũ, chỉ thêm giới hạn chiều cao để đều hàng */
+.route-info{ padding:12px 16px; text-align:left; display:flex; flex-direction:column; justify-content:space-between; }
+.route-info h3{
+  margin:0 0 8px;
+  font-size:16px; font-weight:700; color:#0a5fb5; line-height:1.35;
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; /* 2 dòng là cắt ... */
+}
+.route-info p{ color:#009933; font-weight:700; font-size:14px; margin:0; }
+
+/* --- Breakpoints giữ nguyên mẫu nhưng co giãn gọn khi thu hẹp --- */
+@media (max-width: 1180px){ /* ~3 ô/hàng */
+  .routes-list{ grid-template-columns: repeat(3, minmax(260px,1fr)); }
+}
+@media (max-width: 900px){  /* 2 ô/hàng */
+  .routes-list{ grid-template-columns: repeat(2, minmax(260px,1fr)); }
+}
+@media (max-width: 560px){  /* 1 ô/hàng, căn giữa */
+  .routes-list{ grid-template-columns: 1fr; }
+  .route-item{ max-width: 420px; margin: 0 auto; }
+}
+/* Ổn định layout khi mở DevTools */
+html { scrollbar-gutter: stable both-edges; }
+*, *::before, *::after { box-sizing: border-box; }
+
+/* Container chung của Home (khung 1200px) */
+.home-page .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+
+/* ===================== TUYẾN ĐƯỜNG PHỔ BIẾN ===================== */
+.routes-list{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(260px,1fr));
+  gap:24px;
+  align-items:stretch;
+}
+.route-item{
+  background:#fff;
+  border:1px solid #e6e8ec;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+  transition:transform .25s, box-shadow .25s, border-color .2s;
+}
+.route-item:hover{ transform:translateY(-6px); box-shadow:0 12px 28px rgba(0,0,0,.12); }
+.route-item img{ width:100%; aspect-ratio:16/9; object-fit:cover; display:block; }
+.route-info{ padding:12px 16px; display:flex; flex-direction:column; justify-content:space-between; }
+.route-info h3{
+  margin:0 0 8px; font-size:16px; font-weight:700; color:#0a5fb5; line-height:1.35;
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+}
+.route-info p{ margin:0; color:#009933; font-weight:700; font-size:14px; }
+
+/* ===================== CARD RIÊNG CHO HOME ===================== */
+.home-cards{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0,1fr));
+  gap:22px;
+}
+.home-bus-card{
+  border:1px solid #e6e8ec;
+  border-radius:14px;
+  background:#fff;
+  overflow:hidden;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.home-bus-card:hover{ transform:translateY(-4px); box-shadow:0 10px 26px rgba(0,0,0,.12); }
+.home-bus-card .media{ position:relative; aspect-ratio:16/9; overflow:hidden; }
+.home-bus-card .media img{ width:100%; height:100%; object-fit:cover; display:block; }
+.home-bus-card .media::after{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:6px;
+  background:linear-gradient(90deg,#ffa73533,#0a5fb522);
+}
+.home-bus-card .body{ padding:10px 14px 14px; }
+.home-bus-card .body h3{
+  margin:0; font-size:16px; font-weight:800; color:#0a5fb5; line-height:1.35;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+
+/* ===== Breakpoints (giữ mẫu nhưng co giãn gọn) ===== */
+@media (max-width:1180px){
+  .routes-list { grid-template-columns:repeat(3,minmax(260px,1fr)); }
+  .home-cards  { grid-template-columns:repeat(3, minmax(0,1fr)); }
+}
+@media (max-width:900px){
+  .routes-list { grid-template-columns:repeat(2,minmax(260px,1fr)); }
+  .home-cards  { grid-template-columns:repeat(2, minmax(0,1fr)); }
+}
+@media (max-width:560px){
+  .routes-list, .home-cards { grid-template-columns:1fr; }
+  .route-item, .home-bus-card { max-width:420px; margin:0 auto; }
+}
+
+/* ===================== CAROUSEL MOBILE (≤768px) ===================== */
+.home-carousel::-webkit-scrollbar{ display:none; }
+.home-carousel{ scrollbar-width:none; } /* Firefox */
+
+@media (max-width:768px){
+  /* Biến grid thành dải cuộn ngang */
+  .home-carousel{
+    display:grid;
+    grid-auto-flow:column;
+    grid-auto-columns:88%;     /* mỗi item ~88% màn hình */
+    overflow-x:auto;
+    overscroll-behavior-x:contain;
+    scroll-snap-type:x mandatory;
+    gap:14px;
+    padding-bottom:6px;
+  }
+  .home-carousel > *{ scroll-snap-align:start; }
+
+  /* Card chiếm 100% “cột” */
+  .home-bus-card, .route-item { width:100%; }
+
+  /* Nút điều hướng hiện ở mobile */
+  .carousel-btns{ display:flex; justify-content:center; gap:12px; margin-top:8px; }
+  .carousel-btn{
+    width:36px; height:36px; border:none; border-radius:50%;
+    background:#ff9a16; color:#fff; font-size:18px; line-height:1;
+    box-shadow:0 6px 16px rgba(255,165,0,.35); cursor:pointer;
+  }
+}
+@media (min-width:769px){ .carousel-btns{ display:none; } }
+/* ==== Carousel mobile: không hở item kế tiếp, không lệch khi load ảnh ==== */
+@media (max-width: 768px){
+  .home-carousel{
+    display: grid;
+    grid-auto-flow: column;
+    /* mỗi item = toàn bộ viewport trừ 16px padding mỗi bên */
+    grid-auto-columns: calc(100vw - 32px);
+
+    /* kéo dải ra sát mép màn hình nhưng vẫn giữ khoảng thở 16px bên trong */
+    margin-left:  -16px;
+    margin-right: -16px;
+    padding-left: 16px;
+    padding-right:16px;
+
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 16px;  /* snap đúng mép trái sau padding */
+
+    gap: 14px;
+    padding-bottom: 6px;
+
+    /* tránh chrome tự “neo” khi ảnh thay đổi kích thước */
+    overflow-anchor: none;
+  }
+
+  .home-carousel > *{
+    width: 100%;                 /* item đúng bằng cột */
+    scroll-snap-align: start;    /* snap đầu item */
+  }
+
+  /* chắc chắn item đầu không có margin lệch trái */
+  .home-carousel > :first-child{
+    margin-left: 0 !important;
+  }
+}
+/* Ổn định thanh cuộn khi mở DevTools */
+html{ scrollbar-gutter: stable both-edges; }
+
+/* ===== Khung chứa để đặt nút overlay 2 bên ===== */
+.carousel-wrap{ position: relative; }
+
+/* ===== Nút overlay 2 bên (desktop/tablet) ===== */
+.carousel-side{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:44px; height:44px; border:none; border-radius:999px;
+  background:#ff9a16; color:#fff; font-size:20px; line-height:1;
+  box-shadow:0 8px 22px rgba(255,165,0,.35); cursor:pointer; z-index:5;
+  display:none; /* ẩn mặc định, chỉ hiện ≥ 769px */
+}
+.carousel-side.prev{ left:-8px; }
+.carousel-side.next{ right:-8px; }
+
+@media (min-width: 769px){
+  .carousel-side{ display:inline-flex; align-items:center; justify-content:center; }
+}
+
+/* ===== Nút phía dưới chỉ cho mobile ===== */
+.carousel-btns-bottom{ display:none; }
+.carousel-btn{
+  width:36px; height:36px; border:none; border-radius:999px;
+  background:#ff9a16; color:#fff; font-size:18px; line-height:1;
+  box-shadow:0 6px 16px rgba(255,165,0,.35); cursor:pointer;
+}
+@media (max-width: 768px){
+  .carousel-btns-bottom{ display:flex; justify-content:center; gap:12px; margin-top:8px; }
+}
+
+/* ===== Mobile carousel: full viewport - không lộ item kế ===== */
+@media (max-width: 768px){
+  .home-carousel{
+    display:grid;
+    grid-auto-flow:column;
+    grid-auto-columns: calc(100vw - 32px); /* full viewport trừ padding container */
+    margin-left:-16px; margin-right:-16px;   /* “nhảy” ra khỏi padding container */
+    padding-left:16px; padding-right:16px;
+    gap:14px; padding-bottom:6px;
+
+    overflow-x:auto; -webkit-overflow-scrolling:touch;
+    overscroll-behavior-x:contain;
+    scroll-snap-type:x mandatory; scroll-padding-left:16px;
+    overflow-anchor:none;
+  }
+  .home-carousel > *{ width:100%; scroll-snap-align:start; }
+}
+
+/* ===== Promo (Ưu đãi nổi bật) thành carousel đúng nghĩa ===== */
+.promo .promo-track{
+  display:grid;
+  grid-auto-flow:column;
+  grid-auto-columns:100%;
+  overflow-x:auto; -webkit-overflow-scrolling:touch;
+  scroll-snap-type:x mandatory;
+}
+.promo .promo-track > img{
+  width:100%; height:auto; display:block; scroll-snap-align:center;
+}
+.promo .carousel-side.prev{ left:8px; }
+.promo .carousel-side.next{ right:8px; }
+
+/* Giữ layout desktop cho routes/home-cards như cũ (bạn đã có) */
+/* ... (các rule .routes-list, .home-cards, .home-bus-card, .route-item đang dùng vẫn giữ nguyên) */
+/* ===== GIÃN KHOẢNG CHO NÚT OVERLAY TRÊN DESKTOP ===== */
+@media (min-width: 769px){
+  /* đệm 2 bên để có khoảng trống riêng cho mũi tên */
+  .carousel-wrap{
+    padding-left: 56px;
+    padding-right: 56px;
+  }
+  /* mũi tên nằm trong vùng đệm, cách nội dung 20px */
+  .carousel-side.prev{ left: 20px; }
+  .carousel-side.next{ right: 20px; }
+}
+
+/* Banner “Ưu đãi nổi bật” thường cần khoảng rộng hơn một chút */
+@media (min-width: 769px){
+  .carousel-wrap.promo{
+    padding-left: 72px;
+    padding-right: 72px;
+  }
+  .carousel-wrap.promo .carousel-side.prev{ left: 28px; }
+  .carousel-wrap.promo .carousel-side.next{ right: 28px; }
+}
+
+/* (Tùy chọn) làm mờ mép 2 bên để nút nổi bật hơn */
+@media (min-width: 769px){
+  .carousel-wrap::before,
+  .carousel-wrap::after{
+    content:"";
+    position:absolute; top:0; bottom:0; width:48px; pointer-events:none;
+    z-index:4; border-radius:12px;
+  }
+  .carousel-wrap::before{
+    left:0;
+    background: linear-gradient(90deg, rgba(255,255,255,0.95), rgba(255,255,255,0));
+  }
+  .carousel-wrap::after{
+    right:0;
+    background: linear-gradient(270deg, rgba(255,255,255,0.95), rgba(255,255,255,0));
+  }
+}
+
+/* Mobile vẫn dùng các nút dưới cùng như trước, KHÔNG ảnh hưởng */
+.slider-wrap {
+  position: relative;
+}
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: #FEBE00;
+  display: flex;
+  align-items:center;
+  justify-content:center;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.nav-btn.prev { left: -22px; }
+.nav-btn.next { right: -22px; }
+
+@media (max-width: 768px){
+  .nav-btn.prev { left: 4px; }
+  .nav-btn.next { right: 4px; }
+}
+/* Track tuyến đường: dùng flex để chiều cao ổn định và căn nút đúng giữa */
+.routes-list.home-carousel{
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-block: 8px;          /* để có “chiều cao” cho nav-btn căn giữa */
+}
+
+/* Card tuyến đường: cố định chiều rộng để slider mượt */
+.route-item{
+  min-width: 260px;            /* giống card hiện tại */
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+  scroll-snap-align: start;
+}
+.route-item img{
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+}
+.route-info{ padding: 12px 16px; }
+
+/* Nút mũi tên (đã dùng chung với 2 block kia) */
+.slider-wrap { position: relative; }
+.nav-btn{
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 44px; height: 44px; border: none; border-radius: 50%;
+  background: #FFB400; color: #fff; font-size: 20px;
+  display: inline-flex; align-items:center; justify-content:center;
+  cursor: pointer; z-index: 5; box-shadow: 0 10px 24px rgba(0,0,0,.12);
+}
+.nav-btn.prev{ left: -22px; }
+.nav-btn.next{ right: -22px; }
+
+/* Desktop: thêm một chút padding ngang cho carousel để nội dung không bị nút đè */
+@media (min-width: 769px){
+  .slider-wrap .carousel-wrap{ padding-inline: 48px; }
+}
+
+/* Mobile: kéo nút vào trong và bỏ padding */
+@media (max-width: 768px){
+  .nav-btn{ width: 38px; height: 38px; font-size: 18px; }
+  .nav-btn.prev{ left: 6px; }
+  .nav-btn.next{ right: 6px; }
+  .slider-wrap .carousel-wrap{ padding-inline: 0; }
+}
+/* Mặc định (desktop-first): chỉ hiện overlay, ẩn nút dưới */
+.nav-btn{ display: inline-flex; }             /* overlay 2 bên */
+.carousel-btns-bottom{ display: none; }       /* nút bên dưới */
+
+/* MOBILE ≤ 768px: ẩn overlay, chỉ hiện nút dưới */
+@media (max-width: 768px){
+  .nav-btn{
+    display: none !important;                 /* ẩn hẳn overlay */
+  }
+  .carousel-btns-bottom{
+    display: flex !important;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 10px;
+  }
+}
+
+/* DESKTOP ≥ 769px: đảm bảo chỉ overlay hiển thị */
+@media (min-width: 769px){
+  .carousel-btns-bottom{ display: none !important; }
+  .nav-btn{ display: inline-flex !important; }
 }

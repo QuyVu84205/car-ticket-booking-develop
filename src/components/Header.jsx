@@ -60,6 +60,7 @@ export default function Header() {
             <li><NavLink to="/bus-station">Bến xe</NavLink></li>
             <li><NavLink to="/tuyen-duong">Tuyến đường</NavLink></li>
             <li><NavLink to="/kiemtrave">Kiểm tra vé</NavLink></li>
+<NavLink to="/admin/bus-management">Quản lý xe</NavLink>
           </ul>
 
           {/* nút search nhỏ (desktop) */}
