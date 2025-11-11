@@ -24,7 +24,6 @@
 }
 .nav-inner {
   display:flex;
-  justify-content:space-between;
   align-items:center;
   padding:12px 0;
 }
@@ -43,32 +42,30 @@
   color: #111;
   font-weight: 600;
   letter-spacing: .2px;
-  padding: 10px 16px;    /* để khi active có nền không bị giật layout */
-  border-radius: 10px;   /* bo góc giống mẫu */
+  padding: 10px 16px;
+  border-radius: 10px; 
   transition: background .15s ease, color .15s ease, box-shadow .15s ease;
 }
 
-/* Hover trạng thái bình thường */
-.menu a:hover { color: #109cd8; }
 
-/* ACTIVE: nền xanh, chữ trắng, đậm */
+.menu a:hover { color: #f6f9fa; }
+
+
 .menu a.active {
   background: #109cd8;
-  color: #fff !important;         /* ghi đè để không bị rule khác lấn */
+  color: #fff !important; 
   box-shadow: 0 2px 0 rgba(0,0,0,.08);
 }
 
-/* Tắt gạch chân dưới cũ nếu bạn còn giữ rule ::after */
+
 .menu a.active::after { content: none; }
 
-/* Truy cập bàn phím */
 .menu a:focus-visible {
   outline: 2px solid rgba(16,156,216,.35);
   outline-offset: 2px;
 }
 
 
-/* SEARCH BUTTON */
 .search-mini{
   background:#ffb200;
   border:none;
@@ -172,4 +169,27 @@
   cursor:pointer;
   font-size:22px;
   color:#6b7280;
+}
+.nav-right { display:flex; align-items:center; gap:8px; }
+.admin-chip{
+  border:1px solid #0b5ed7;
+  padding:6px 10px;
+  border-radius:999px;
+  font-weight:700;
+  color:#0b5ed7;
+  background:#fff;
+  text-decoration:none;
+  line-height:1;
+   margin-left: auto;
+}
+.admin-chip:hover{ background:#0b5ed7; color:#fff; }
+.brand {
+  display: flex;
+  align-items: center;
+  /* KHÔNG dùng margin-left ở đây nữa */
+  transform: translateX(300px); /* chỉnh 20 / 30 / 50 tuỳ ý */
+}
+.topbar span {
+  display: inline-block;
+  transform: translateX(300px);  /* để cùng số với .brand cho thẳng hàng */
 }

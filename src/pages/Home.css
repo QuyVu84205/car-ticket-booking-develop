@@ -6,7 +6,7 @@
 }
 *{box-sizing:border-box}
 body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;color:var(--text)}
-.container{width:min(1200px,92%);margin:0 auto}
+
 
 /* Topbar */
 .topbar{background:var(--blue);color:#eaf4ff;font-size:13px}
@@ -122,7 +122,14 @@ body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;color
 
 .section{padding:60px 0;background:#fff}
 .section.alt{background:#f7fafc}
-.section-title{position:relative;margin:0 0 24px;padding-left:18px;font-size:26px;font-weight:700}
+.section-title{
+  position: relative;
+  margin: 0 0 24px;
+  margin-left: -16px;   /* ⬅ kéo cả gạch + chữ sang trái */
+  padding-left: 18px;   /* giữ khoảng cách gạch ↔ chữ như cũ */
+  font-size: 26px;
+  font-weight: 700;
+}
 .section-title::before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:6px;background:var(--orange);border-radius:3px}
 
 /* Tuyến đường phổ biến */
@@ -898,8 +905,7 @@ html, body, #root {
   text-overflow: ellipsis;
 }
 /* Ổn định layout khi bật/tắt scrollbar lúc F12 */
-html{ scrollbar-gutter: stable both-edges; }
-*,*::before,*::after{ box-sizing: border-box; }
+
 
 /* Container cùng khung với các section khác */
 .home-page .container{
@@ -908,13 +914,6 @@ html{ scrollbar-gutter: stable both-edges; }
   padding: 0 16px;
 }
 
-/* === TUYẾN ĐƯỜNG PHỔ BIẾN: responsive nhưng giữ mẫu === */
-.routes-list{
-  display: grid;
-  grid-template-columns: repeat(4, minmax(260px, 1fr)); /* 4 ô/hàng khi đủ chỗ */
-  gap: 24px;
-  align-items: stretch;
-}
 
 .route-item{
   background:#fff;
@@ -964,10 +963,11 @@ html { scrollbar-gutter: stable both-edges; }
 /* ===================== TUYẾN ĐƯỜNG PHỔ BIẾN ===================== */
 .routes-list{
   display:grid;
-  grid-template-columns:repeat(4, minmax(260px,1fr));
-  gap:24px;
+  grid-template-columns:repeat(4, minmax(290px,1fr));  /* 260 -> 290 */
+  gap:18px;                                           /* giảm gap */
   align-items:stretch;
 }
+
 .route-item{
   background:#fff;
   border:1px solid #e6e8ec;
@@ -1008,7 +1008,7 @@ html { scrollbar-gutter: stable both-edges; }
 }
 .home-bus-card .body{ padding:10px 14px 14px; }
 .home-bus-card .body h3{
-  margin:0; font-size:16px; font-weight:800; color:#0a5fb5; line-height:1.35;
+  margin:0; font-size:16px; font-weight:800; color:#070707; line-height:1.35;
   white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
 
@@ -1094,8 +1094,7 @@ html { scrollbar-gutter: stable both-edges; }
     margin-left: 0 !important;
   }
 }
-/* Ổn định thanh cuộn khi mở DevTools */
-html{ scrollbar-gutter: stable both-edges; }
+
 
 /* ===== Khung chứa để đặt nút overlay 2 bên ===== */
 .carousel-wrap{ position: relative; }
@@ -1182,24 +1181,6 @@ html{ scrollbar-gutter: stable both-edges; }
   .carousel-wrap.promo .carousel-side.next{ right: 28px; }
 }
 
-/* (Tùy chọn) làm mờ mép 2 bên để nút nổi bật hơn */
-@media (min-width: 769px){
-  .carousel-wrap::before,
-  .carousel-wrap::after{
-    content:"";
-    position:absolute; top:0; bottom:0; width:48px; pointer-events:none;
-    z-index:4; border-radius:12px;
-  }
-  .carousel-wrap::before{
-    left:0;
-    background: linear-gradient(90deg, rgba(255,255,255,0.95), rgba(255,255,255,0));
-  }
-  .carousel-wrap::after{
-    right:0;
-    background: linear-gradient(270deg, rgba(255,255,255,0.95), rgba(255,255,255,0));
-  }
-}
-
 /* Mobile vẫn dùng các nút dưới cùng như trước, KHÔNG ảnh hưởng */
 .slider-wrap {
   position: relative;
@@ -1220,9 +1201,6 @@ html{ scrollbar-gutter: stable both-edges; }
   cursor: pointer;
   z-index: 5;
 }
-
-.nav-btn.prev { left: -22px; }
-.nav-btn.next { right: -22px; }
 
 @media (max-width: 768px){
   .nav-btn.prev { left: 4px; }
@@ -1263,8 +1241,8 @@ html{ scrollbar-gutter: stable both-edges; }
   display: inline-flex; align-items:center; justify-content:center;
   cursor: pointer; z-index: 5; box-shadow: 0 10px 24px rgba(0,0,0,.12);
 }
-.nav-btn.prev{ left: -22px; }
-.nav-btn.next{ right: -22px; }
+.nav-btn.prev{ left: -150px; }
+.nav-btn.next{ right: -60px; }
 
 /* Desktop: thêm một chút padding ngang cho carousel để nội dung không bị nút đè */
 @media (min-width: 769px){
@@ -1299,4 +1277,463 @@ html{ scrollbar-gutter: stable both-edges; }
 @media (min-width: 769px){
   .carousel-btns-bottom{ display: none !important; }
   .nav-btn{ display: inline-flex !important; }
+}
+/* Dẹp rãnh hai mép do scrollbar-gutter tạo ra */
+html{
+  scrollbar-gutter: auto !important;   /* hoặc: stable; */
+}
+
+/* Chốt lại: không mép trắng do 100vw gây ra */
+.hero, .section, .site-footer, .search-card{
+  max-width: 100% !important;          /* tránh 100vw khi có scrollbar */
+}
+
+/* Đảm bảo không có padding/margin “ảo” ở cấp trang */
+html, body, #root{
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.route-item{
+  width:100%;
+  max-width: 290px;   /* fix width */
+}
+/* Đẩy cả gạch + chữ của tiêu đề section ở trang Home sang trái */
+.home-page .section-title{
+  margin-left: -70px;   /* thử -10, -20… để canh vừa ý */
+}
+/* Căn tất cả carousel (tuyến đường, ưu đãi, nhà xe, bến xe) thẳng hàng với gạch cam */
+.home-page .slider-wrap .carousel-wrap{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: -70px;              /* ĐỂ CÙNG GIÁ TRỊ VỚI .section-title */
+}
+/* === HOME – FIX MOBILE 390px: title gọn, 1 card / màn hình === */
+@media (max-width: 480px) {
+
+  /* Khung nội dung home vừa với màn (390) */
+  .home-page .container {
+    max-width: 390px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 12px;
+  }
+
+  /* Tiêu đề: bỏ margin âm, thu nhỏ font, gạch cam vẫn sát chữ */
+  .home-page .section-title {
+    margin: 24px 0 16px;   /* không kéo sang trái nữa */
+    margin-left: 0;
+    padding-left: 14px;    /* chừa chỗ cho gạch cam */
+    font-size: 20px;
+  }
+
+  /* ===== TUYẾN ĐƯỜNG PHỔ BIẾN – CHỈ 1 CARD / 1 MÀN ===== */
+
+  /* Tắt các thiết lập carousel cũ gây lệch */
+  .home-page .routes-list.home-carousel {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+
+    display: grid !important;
+    grid-auto-flow: column !important;
+    grid-auto-columns: 100% !important;   /* mỗi item = 100% chiều ngang */
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+  }
+
+  /* Mỗi card chiếm full chiều ngang, không còn min-width 260px nữa */
+  .home-page .routes-list.home-carousel .route-item {
+    min-width: 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto;
+    scroll-snap-align: start;
+  }
+
+  /* Ảnh tự full theo card, không bị hụt mép */
+  .home-page .routes-list.home-carousel .route-item img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+  }
+}
+/* === HOME MOBILE (≤ 480px): title + ảnh vừa khung 390, 1 card / màn hình === */
+@media (max-width: 480px) {
+
+  /* Khung nội dung home: đúng 390, không padding thừa */
+  .home-page .container {
+    max-width: 390px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;                 /* bỏ padding 16px/12px cũ */
+  }
+
+  /* Tiêu đề: không kéo sang trái nữa, nhỏ lại */
+  .home-page .section-title {
+    margin: 24px 0 16px;
+    margin-left: 0;             /* override -70px */
+    padding-left: 14px;         /* chừa chỗ gạch cam */
+    font-size: 20px;
+  }
+
+  /* Bỏ margin-left -70 ở carousel */
+  .home-page .slider-wrap .carousel-wrap {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* ===== TẤT CẢ HOME CAROUSEL: mỗi item = full chiều ngang ===== */
+  .home-carousel {
+    display: grid !important;
+    grid-auto-flow: column !important;
+    grid-auto-columns: 100% !important;   /* MỖI ITEM = 100% KHUNG 390 */
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+  }
+
+  .home-carousel > * {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    scroll-snap-align: start;
+    margin: 0 !important;
+  }
+
+  /* Tuyến đường phổ biến – card chiếm full chiều ngang */
+  .routes-list.home-carousel {
+    display: grid !important;   /* thay vì flex */
+    grid-auto-flow: inherit;
+    grid-auto-columns: inherit;
+  }
+  .routes-list.home-carousel .route-item {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Nhà xe phổ biến – card cũng full khung */
+  .home-carousel .home-bus-card {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Ảnh: luôn full card */
+  .routes-list.home-carousel .route-item img,
+  .home-carousel .home-bus-card img {
+    width: 100% !important;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+  }
+}
+/* === FIX CUỐI CÙNG: HOME CAROUSEL MOBILE (≤ 480px) === */
+@media (max-width: 480px) {
+
+  /* Khung container đúng 390, không padding thừa */
+  .home-page .container {
+    max-width: 390px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  /* Tiêu đề gọn, không lệch */
+  .home-page .section-title {
+    margin: 24px 0 16px;
+    margin-left: 0;
+    padding-left: 14px;      /* chừa chỗ cho gạch cam */
+    font-size: 20px;
+  }
+
+  /* Bỏ margin/padding kéo lệch carousel */
+  .home-page .slider-wrap .carousel-wrap {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* ===== RESET LẠI TẤT CẢ HOME CAROUSEL ===== */
+  .home-carousel {
+    display: flex !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    gap: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    scroll-padding-left: 0 !important;
+  }
+
+  /* Mỗi item (route-item, home-bus-card, …) = 100% bề ngang */
+  .home-carousel > * {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    scroll-snap-align: start;
+    margin: 0 !important;
+  }
+
+  /* Tuyến đường phổ biến dùng home-carousel */
+  .routes-list.home-carousel {
+    display: flex !important;
+  }
+  .routes-list.home-carousel .route-item {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+  }
+
+  /* Nhà xe phổ biến cũng full khung */
+  .home-carousel .home-bus-card {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+  }
+
+  /* Ảnh luôn full card, không bị hụt mép */
+  .home-carousel img {
+    width: 100% !important;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+  }
+}
+/* === MOBILE ≤ 480px: Đưa form tìm kiếm xuống dưới ảnh hero === */
+@media (max-width: 480px) {
+
+  /* Ảnh hero: hiển thị gọn, đủ chiều cao, không chừa chỗ cho form */
+  .hero{
+    width: 100%;
+    max-width: 390px;
+    margin: 0 auto;
+
+    /* chỉ hiển thị banner, không “kéo” thêm chỗ cho form */
+    background-size: contain !important;
+    background-position: center top !important;
+    background-repeat: no-repeat !important;
+
+    min-height: 260px !important;
+    padding: 0 !important;          /* bỏ padding-bottom chừa form */
+  }
+
+  /* FORM TÌM KIẾM: trở lại position:static, nằm dưới hero */
+  .search-card{
+    position: static !important;
+    left: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+
+    width: calc(100% - 24px) !important;   /* chừa 12px hai bên */
+    max-width: 390px !important;
+    margin: 12px auto 0 !important;        /* canh giữa, nằm dưới ảnh */
+    box-sizing: border-box;
+  }
+}
+/* ==== MOBILE ≤ 480px: ảnh hero ở trên, form tìm kiếm ở dưới ==== */
+@media (max-width: 480px) {
+
+  /* Hero không còn background trực tiếp, chỉ làm khung bao */
+  .hero {
+    position: relative;
+    max-width: 390px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 !important;
+    background: none !important;          /* bỏ background cũ */
+    display: block;
+  }
+
+  /* Vẽ ảnh banner bằng pseudo-element đứng TRÊN form */
+  .hero::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 260px;                        /* cao của banner, chỉnh tuỳ ý */
+    background: url("/vivutoday.jpg") center top / contain no-repeat;
+  }
+
+}
+/* === MOBILE ≤ 480px: canh lại khoảng cách hero ↔ form ↔ section === */
+@media (max-width: 480px) {
+
+  /* Hero: giữ như cũ nhưng không tạo khoảng trống thừa */
+  .hero {
+    max-width: 390px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 !important;
+  }
+
+  /* Banner: thấp hơn để form không quá xa ảnh */
+  .hero::before {
+    height: 130px !important;        /* nếu vẫn xa, thử giảm xuống 180 / 170 */
+  }
+
+  /* Form tìm kiếm: kéo lên gần ảnh + tạo khoảng với section dưới */
+  .search-card {
+        margin-top: 12px !important;      /* hoặc 16px cho đẹp hơn */
+    margin-bottom: 32px !important;   /* tạo khoảng với "Tuyến Đường Phổ Biến" */
+  }
+
+  /* Cho section đầu tiên bớt padding-top để không bị “đè” bởi form */
+  .section:first-of-type {
+    padding-top: 16px !important;
+  }
+}
+/* === MOBILE ≤ 480px: đẩy cả slider xuống, không đè form === */
+@media (max-width: 480px) {
+
+  /* Form: khoảng trên/dưới ổn định */
+  .search-card{
+    margin-top: 12px !important;     /* sát banner 1 chút */
+    margin-bottom: 24px !important;  /* khoảng trắng trước "Tuyến Đường Phổ Biến" */
+  }
+
+  /* HỦY margin-top cũ trên list (nếu có) */
+  .home-page .routes-list{
+    margin-top: 0 !important;
+  }
+}
+/* FIX MOBILE 390–480: khoảng cách hero – search – slider gọn lại */
+@media (max-width: 480px) {
+
+  /* KHÔNG đẩy slider nữa */
+  .home-page .slider-wrap{
+    margin-top: 0 !important;
+  }
+}
+@media (max-width: 480px) {
+
+  /* Form tìm kiếm: nằm dưới hero, cách trên/dưới vừa phải */
+  .search-card{
+    position: static !important;
+    left: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+
+    width: calc(100% - 24px) !important;
+    max-width: 390px !important;
+
+    margin: 12px auto 20px !important;  /* 12px dưới banner, 20px trước section */
+  }
+
+  /* Section đầu tiên (Tuyến đường phổ biến) bớt padding-top để không xa form */
+  .home-page .section:first-of-type{
+    padding-top: 16px !important;      /* mặc định của bạn là 60px */
+  }
+
+  /* Giảm padding giữa các section trên mobile cho đỡ xa nhau */
+  .section{
+    padding: 36px 0 !important;        /* từ 60px -> 36px, tuỳ bạn chỉnh 32/40 */
+  }
+}
+/* ==== FIX MOBILE ≤ 480px: search dưới hero, không đè slider, khoảng cách vừa ==== */
+@media (max-width: 480px) {
+
+  /* Hero: dùng lại background như bình thường, bỏ mọi ::before hack */
+  .hero{
+    position: relative !important;
+    display: block !important;
+    width: 100%;
+    max-width: 390px;
+    margin: 0 auto;
+    background: url("/vivutoday.jpg") center top / contain no-repeat !important;
+    padding: 0 0 16px !important;   /* 16px khoảng dưới banner */
+    min-height: auto !important;
+  }
+  .hero::before{
+    content: none !important;       /* tắt pseudo cũ */
+  }
+
+  /* Search card: trở về flow bình thường, dưới banner, không overlay */
+  .search-card{
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+
+    width: calc(100% - 24px) !important;  /* chừa 12px mỗi bên */
+    max-width: 390px !important;
+    margin: 12px auto 20px !important;    /* trên 12px, dưới 20px – chỉnh thêm nếu muốn */
+    box-sizing: border-box;
+  }
+
+  /* Slider ngay sau form: không cộng thêm margin-top nào nữa */
+  .home-page .slider-wrap,
+  .home-page .routes-list{
+    margin-top: 0 !important;
+  }
+
+  /* Giảm padding section để khoảng cách không bị giãn quá */
+  .section{
+    padding-top: 24px !important;
+    padding-bottom: 40px !important;
+  }
+  .section:first-of-type{
+    padding-top: 0 !important;
+  }
+}
+/* === MOBILE ≤ 480px: hero to, bao quanh search-card === */
+@media (max-width: 480px) {
+
+  /* Hero: phóng to, cho phép cắt 2 bên (cover) */
+  .hero{
+    position: relative;
+    max-width: 390px;
+    width: 100%;
+    margin: 0 auto;
+
+    /* ảnh to, có thể crop 2 bên */
+    background: url("/vivutoday.jpg") center / cover no-repeat !important;
+
+    /* khoảng trống trên / dưới để chứa form luôn trong hero */
+    padding: 60px 12px 40px;          /* chỉnh 50–70 / 30–50 tuỳ mắt */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    min-height: auto !important;
+  }
+
+  /* Tắt các pseudo / hack hero cũ nếu còn */
+  .hero::before{
+    content: none !important;
+  }
+
+  /* Search-card: nằm trong hero, không absolute nữa */
+  .hero .search-card{
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+
+    width: 100% !important;
+    max-width: 360px !important;
+    margin: 0 auto;                  /* card nằm giữa hero */
+  }
+
+  /* Section đầu tiên dưới hero: giảm khoảng cách cho gọn */
+  .section:first-of-type{
+    padding-top: 16px !important;
+  }
 }

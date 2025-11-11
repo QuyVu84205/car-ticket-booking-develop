@@ -1,3 +1,4 @@
+// src/components/Header.jsx
 import { useEffect, useRef, useState } from "react";
 import { NavLink, Link, useLocation, useNavigate } from "react-router-dom";
 import "./header.css";
@@ -7,6 +8,10 @@ export default function Header() {
   const [openSearch, setOpenSearch] = useState(false); // search overlay
   const { pathname } = useLocation();
 
+  // lấy thông tin user (localStorage test)
+  const user = JSON.parse(localStorage.getItem("auth:user") || "null");
+  const isAdmin = user?.role === "admin";
+
   // đóng menu khi đổi route + khóa/unlock scroll
   useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
@@ -14,7 +19,7 @@ export default function Header() {
     return () => document.body.classList.remove("nav-open");
   }, [open]);
 
-  // ESC to close search
+  // ESC để đóng search
   useEffect(() => {
     const onKey = (e) => e.key === "Escape" && setOpenSearch(false);
     window.addEventListener("keydown", onKey);
@@ -23,7 +28,7 @@ export default function Header() {
 
   return (
     <>
-      {/* TOPBAR (desktop) */}
+      {/* ===== TOPBAR (desktop) ===== */}
       <div className="topbar">
         <div className="container">
           <span>Hệ thống Đặt Vé Xe Toàn Quốc</span>
@@ -35,24 +40,18 @@ export default function Header() {
         </div>
       </div>
 
-      {/* NAVBAR */}
+      {/* ===== NAVBAR ===== */}
       <nav className="navbar">
         <div className="container nav-inner">
           {/* mobile: nút menu */}
-          <button
-            className="hamburger"
-            onClick={() => setOpen(true)}
-            aria-label="Mở menu"
-          >
-            ☰
-          </button>
+          <button className="hamburger" onClick={() => setOpen(true)} aria-label="Mở menu">☰</button>
 
           {/* logo */}
           <Link to="/" className="brand">
             <img src="/logo.png" alt="Vivutoday" />
           </Link>
 
-          {/* menu desktop */}
+          {/* menu desktop (KHÔNG có mục admin) */}
           <ul className="menu">
             <li><NavLink to="/home" end>Trang chủ</NavLink></li>
             <li><NavLink to="/gioi-thieu">Giới thiệu</NavLink></li>
@@ -60,29 +59,23 @@ export default function Header() {
             <li><NavLink to="/bus-station">Bến xe</NavLink></li>
             <li><NavLink to="/tuyen-duong">Tuyến đường</NavLink></li>
             <li><NavLink to="/kiemtrave">Kiểm tra vé</NavLink></li>
-<NavLink to="/admin/bus-management">Quản lý xe</NavLink>
           </ul>
 
-          {/* nút search nhỏ (desktop) */}
-          <button
-            className="search-mini"
-            aria-label="Tìm kiếm"
-            onClick={() => setOpenSearch(true)}
-          >
-            🔍
-          </button>
+          {/* bên phải: search + CHIP ADMIN (chỉ hiện khi là admin) */}
+          <div className="nav-right">
+            <button className="search-mini" aria-label="Tìm kiếm" onClick={() => setOpenSearch(true)}>🔍</button>
+            {isAdmin && (
+              <Link to="/admin/bus-management" className="admin-chip" title="Bảng điều khiển Admin">
+                ⚙️ Admin
+              </Link>
+            )}
+          </div>
         </div>
       </nav>
 
-      {/* DRAWER mobile */}
+      {/* ===== DRAWER mobile (KHÔNG có mục admin) ===== */}
       <aside className={`mobile-drawer ${open ? "open" : ""}`} aria-hidden={!open}>
-        <button
-          className="drawer-close"
-          onClick={() => setOpen(false)}
-          aria-label="Đóng menu"
-        >
-          ✕
-        </button>
+        <button className="drawer-close" onClick={() => setOpen(false)} aria-label="Đóng menu">✕</button>
         <ul>
           <li><NavLink to="/home" end>Trang chủ</NavLink></li>
           <li><NavLink to="/gioi-thieu">Giới thiệu</NavLink></li>
@@ -94,7 +87,7 @@ export default function Header() {
       </aside>
       {open && <div className="drawer-overlay" onClick={() => setOpen(false)} />}
 
-      {/* OVERLAY TÌM KIẾM */}
+      {/* ===== OVERLAY TÌM KIẾM ===== */}
       {openSearch && <SearchOverlay onClose={() => setOpenSearch(false)} />}
     </>
   );
@@ -112,8 +105,6 @@ function SearchOverlay({ onClose }) {
 
   const submit = (e) => {
     e.preventDefault();
-    // Demo: hiện alert. Bạn có thể điều hướng sang trang kết quả:
-    // navigate(`/booking?from=${encodeURIComponent(form.from)}&to=${encodeURIComponent(form.to)}&date=${form.date}`);
     alert(`Tìm: ${form.from} → ${form.to} | ${form.date || "Chưa chọn ngày"}`);
     onClose();
   };
@@ -139,7 +130,7 @@ function SearchOverlay({ onClose }) {
             <label>Điểm đến</label>
             <input placeholder="Chọn điểm đến" value={form.to} onChange={update("to")} />
           </div>
-          <div className="field">
+            <div className="field">
             <label>Ngày khởi hành</label>
             <input type="date" value={form.date} onChange={update("date")} />
           </div>
