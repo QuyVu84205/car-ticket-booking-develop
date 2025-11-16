@@ -12,7 +12,7 @@ import BusStation from "./pages/bus-station.jsx";
 import GioiThieu from "./pages/GioiThieu.jsx";
 import TuyenDuong from "./pages/TuyenDuong.jsx";
 
-import Signup from "./page/Signup";        // nếu cần
+import Signup from "./page/Signup";
 import Booking from "./page/Booking";
 import Baiviet from "./page/Baiviet";
 import Kiemtrave from "./page/Kiemtrave";
@@ -49,6 +49,8 @@ export default function App() {
         {/* ===== Auth (không có header) ===== */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/signup" element={<Signup />} />
+
         {/* <Route path="/signup" element={<Signup />} /> */}
 
         {/* ===== Public (có header) ===== */}

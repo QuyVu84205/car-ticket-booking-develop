@@ -79,13 +79,11 @@ export default function Home() {
       </div>
     </div>
 
-    {/* Nút overlay 2 bên – bám theo container để thẳng hàng với các section khác */}
     <button className="nav-btn prev"
       onClick={() => scrollByX(routesRef, -1)} aria-label="Prev">❮</button>
     <button className="nav-btn next"
       onClick={() => scrollByX(routesRef, 1)} aria-label="Next">❯</button>
 
-    {/* Nút dưới (chỉ hiện mobile) */}
     <div className="carousel-btns-bottom">
       <button className="carousel-btn" onClick={() => scrollByX(routesRef, -1)}>❮</button>
       <button className="carousel-btn" onClick={() => scrollByX(routesRef, 1)}>❯</button>
@@ -103,7 +101,6 @@ export default function Home() {
     <div className="carousel-wrap promo">
       <div className="promo-track" ref={promoRef}>
         <img src="/uudai.png" alt="Ưu đãi khứ hồi" className="promo-img" />
-        {/* <img src="/uudai2.png" alt="Ưu đãi 2" className="promo-img" /> */}
       </div>
     </div>
 

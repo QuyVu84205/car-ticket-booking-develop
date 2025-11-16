@@ -43,11 +43,11 @@ export default function AdminLayout() {
           </NavLink>
           <NavLink to="/admin/trips" className="admin-link">
             <span className="nav-icon"></span>
-            <span>Quản lý chuyến</span>
+            <span>Quản lý chuyến xe </span>
           </NavLink>
           <NavLink to="/admin/bookings" className="admin-link">
             <span className="nav-icon"></span>
-            <span>Quản lý vé</span>
+            <span>Quản lý vé xe</span>
           </NavLink>
         </nav>
 

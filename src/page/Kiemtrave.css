@@ -1,250 +1,162 @@
-/* =========================================================
-   ======= TOÀN TRANG =======
-========================================================= */
-.kt-container {
-  font-family: "Segoe UI", sans-serif;
-  color: #333;
-  background-color: #fff;
-  width: 100%;
-  min-height: 100vh;
+/* NỀN TRANG KIỂM TRA VÉ */
+.kiemtrave-page {
+  background: #ffffff;
+  padding: 40px 0 60px;
 }
 
-/* =========================================================
-   ======= HEADER (THANH MENU TRÊN CÙNG) =======
-========================================================= */
-.kt-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #fff;
-  padding: 12px 40px;
-  border-bottom: 1px solid #ddd;
+/* Container riêng cho trang này (nếu đã có .container global thì dùng luôn) */
+.kiemtrave-page .container {
+  width: min(1120px, 94%);
+  margin: 0 auto;
 }
 
-.kt-header-logo img {
-  height: 45px;
-}
+/* ---------- PHẦN TRÊN: TIÊU ĐỀ + THANH HƯỚNG DẪN ---------- */
 
-.kt-header-nav {
-  display: flex;
-  gap: 25px;
-  align-items: center;
-}
-
-.kt-header-nav a {
-  color: #333;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 15px;
-  transition: color 0.3s;
-}
-
-.kt-header-nav a:hover {
-  color: #007bff;
-}
-
-.kt-header-search {
+.ticket-top {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 24px;
+  margin: 10px 0 24px;
 }
 
-.kt-header-search input {
-  padding: 6px 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+/* Khung chứa title – rộng bằng form bên dưới */
+.ticket-title-box {
+  flex: 0 0 360px; /* phải trùng với ticket-form */
+  text-align: center; /* để chữ nằm giữa khung form */
 }
 
-/* =========================================================
-   ======= PHẦN FORM KIỂM TRA VÉ =======
-========================================================= */
-.kt-form-section {
-  width: 100%;
-  padding: 40px 0 80px;
-  background-color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-/* Hộp chứa form và banner */
-.kt-form-box {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 50px;
-  width: 90%;
-  max-width: 1150px;
-}
-
-/* ====== CỘT TRÁI (Form nhập) ====== */
-.kt-form-inputs {
-  flex: 1;
-  max-width: 420px;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  background-color: #fff;
-  border-radius: 8px;
-}
-
-.kt-form-inputs h2 {
-  color: #0056b3;
-  font-size: 22px;
+/* Tiêu đề "Nhập thông tin vé xe" */
+.ticket-title {
+  margin: 0;
+  font-size: 24px;
   font-weight: 700;
+  color: #0070c9;
+}
+
+/* Thanh hướng dẫn màu xanh lá – rộng bằng banner bên dưới */
+.ticket-guide {
+  flex: 1;
+  background: #e4f6dd;
+  border: 1px solid #d1ebc7;
+  color: #3b7a1e;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 2px;
   text-align: center;
-  margin-bottom: 25px;
 }
 
-.kt-form-inputs input {
-  width: 100%;
-  padding: 11px 14px;
-  border: 1px solid #ccc;
+/* ---------- KHỐI DƯỚI: FORM + BANNER ---------- */
+
+.ticket-content {
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
+}
+
+/* Form bên trái */
+.ticket-form {
+  flex: 0 0 360px; /* phải trùng với ticket-title-box */
+  background: #ffffff;
+  border: 1px solid #e3e7f2;
   border-radius: 4px;
-  font-size: 15px;
-  outline: none;
+  padding: 22px 24px 18px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.ticket-form input {
+  width: 100%;
+  padding: 10px 12px;
   margin-bottom: 12px;
-  transition: border 0.3s;
+  border-radius: 2px;
+  border: 1px solid #d2d6e0;
+  font-size: 14px;
+  outline: none;
 }
 
-.kt-form-inputs input:focus {
-  border-color: #007bff;
+.ticket-form input::placeholder {
+  color: #9ca3af;
 }
 
-/* Nút kiểm tra vé */
-.kt-form-inputs button {
+/* Nút "Kiểm tra vé" */
+.ticket-form button {
   width: 100%;
-  background-color: #007bff;
-  color: white;
+  padding: 10px 0;
   border: none;
-  border-radius: 4px;
-  padding: 11px;
-  font-size: 15px;
+  border-radius: 2px;
+  background: #0070c9;
+  color: #ffffff;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s;
+  margin: 4px 0 14px;
+  text-transform: uppercase;
 }
 
-.kt-form-inputs button:hover {
-  background-color: #0056b3;
+.ticket-form button:hover {
+  opacity: 0.9;
 }
 
-/* ====== PHẦN LƯU Ý ====== */
-.kt-note-box {
-  margin-top: 18px;
-  background: #f5f5f5;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 12px 14px;
-  font-size: 14px;
-  line-height: 1.6;
-  color: #333;
-  text-align: center;
-}
-
-.kt-note-box strong {
-  color: #000;
-}
-
-/* ====== CỘT PHẢI (Banner) ====== */
-.kt-right-banner {
-  flex: 1.2;
-  max-width: 600px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Dòng thông báo xanh nhạt phía trên */
-.kt-banner-note {
-  width: 100%;
-  background-color: #eaf7e2;
-  color: #2d6a4f;
-  text-align: center;
-  font-size: 15px;
-  padding: 10px;
-  border-radius: 4px;
-  margin-bottom: 18px;
-}
-
-/* Ảnh banner chính */
-.kt-banner-image {
-  width: 100%;
-  border-radius: 4px;
-  object-fit: contain;
-  border: 1px solid #eee;
-}
-
-/* =========================================================
-   ======= FOOTER =======
-========================================================= */
-.kt-footer {
-  background-color: #fafafa;
-  padding: 40px 60px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  line-height: 1.8;
-}
-
-.kt-footer-column {
-  width: 18%;
-  min-width: 180px;
-  margin-bottom: 25px;
-}
-
-.kt-footer-column h4 {
-  font-size: 15px;
-  color: #333;
-  margin-bottom: 10px;
-  font-weight: 600;
-}
-
-.kt-footer-column a {
+/* Lưu ý bên dưới */
+.ticket-note {
+  font-size: 13px;
   color: #555;
-  font-size: 13px;
-  text-decoration: none;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Banner bên phải */
+.ticket-banner {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+}
+
+.ticket-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
-  margin-bottom: 5px;
+  border-radius: 2px;
 }
 
-.kt-footer-column a:hover {
-  color: #0077cc;
-}
+/* ---------- RESPONSIVE ---------- */
 
-.kt-footer-contact {
-  font-size: 13px;
-  line-height: 1.7;
-}
-
-.kt-footer-cert img {
-  margin-top: 10px;
-  height: 50px;
-}
-
-/* =========================================================
-   ======= RESPONSIVE (MOBILE) =======
-========================================================= */
 @media (max-width: 900px) {
-  .kt-form-box {
+  .ticket-top {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
   }
 
-  .kt-right-banner {
-    max-width: 100%;
+  .ticket-title-box {
+    flex: 1 1 auto;
+    text-align: left;
   }
 
-  .kt-banner-note {
-    margin-top: 20px;
-  }
-
-  .kt-footer {
-    flex-direction: column;
-    gap: 25px;
-  }
-
-  .kt-footer-column {
+  .ticket-guide {
     width: 100%;
+    text-align: left;
+  }
+
+  .ticket-content {
+    flex-direction: column;
+  }
+
+  .ticket-form {
+    flex: 1 1 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .kiemtrave-page {
+    padding: 24px 0 40px;
+  }
+
+  .ticket-title {
+    font-size: 20px;
+  }
+
+  .ticket-guide {
+    font-size: 13px;
+    padding: 8px 10px;
   }
 }

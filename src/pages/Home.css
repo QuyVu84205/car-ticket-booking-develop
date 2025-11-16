@@ -1630,23 +1630,21 @@ html, body, #root{
     width: calc(100% - 24px) !important;
     max-width: 390px !important;
 
-    margin: 12px auto 20px !important;  /* 12px dưới banner, 20px trước section */
+    margin: 12px auto 20px !important;
   }
 
-  /* Section đầu tiên (Tuyến đường phổ biến) bớt padding-top để không xa form */
   .home-page .section:first-of-type{
-    padding-top: 16px !important;      /* mặc định của bạn là 60px */
+    padding-top: 16px !important; 
   }
 
-  /* Giảm padding giữa các section trên mobile cho đỡ xa nhau */
   .section{
-    padding: 36px 0 !important;        /* từ 60px -> 36px, tuỳ bạn chỉnh 32/40 */
+    padding: 36px 0 !important; 
   }
 }
-/* ==== FIX MOBILE ≤ 480px: search dưới hero, không đè slider, khoảng cách vừa ==== */
+
 @media (max-width: 480px) {
 
-  /* Hero: dùng lại background như bình thường, bỏ mọi ::before hack */
+
   .hero{
     position: relative !important;
     display: block !important;
@@ -1654,14 +1652,13 @@ html, body, #root{
     max-width: 390px;
     margin: 0 auto;
     background: url("/vivutoday.jpg") center top / contain no-repeat !important;
-    padding: 0 0 16px !important;   /* 16px khoảng dưới banner */
+    padding: 0 0 16px !important; 
     min-height: auto !important;
   }
   .hero::before{
-    content: none !important;       /* tắt pseudo cũ */
+    content: none !important;
   }
 
-  /* Search card: trở về flow bình thường, dưới banner, không overlay */
   .search-card{
     position: static !important;
     left: auto !important;
@@ -1670,19 +1667,18 @@ html, body, #root{
     bottom: auto !important;
     transform: none !important;
 
-    width: calc(100% - 24px) !important;  /* chừa 12px mỗi bên */
+    width: calc(100% - 24px) !important; 
     max-width: 390px !important;
-    margin: 12px auto 20px !important;    /* trên 12px, dưới 20px – chỉnh thêm nếu muốn */
+    margin: 12px auto 20px !important;
     box-sizing: border-box;
   }
 
-  /* Slider ngay sau form: không cộng thêm margin-top nào nữa */
   .home-page .slider-wrap,
   .home-page .routes-list{
     margin-top: 0 !important;
   }
 
-  /* Giảm padding section để khoảng cách không bị giãn quá */
+
   .section{
     padding-top: 24px !important;
     padding-bottom: 40px !important;
@@ -1691,21 +1687,18 @@ html, body, #root{
     padding-top: 0 !important;
   }
 }
-/* === MOBILE ≤ 480px: hero to, bao quanh search-card === */
+
 @media (max-width: 480px) {
 
-  /* Hero: phóng to, cho phép cắt 2 bên (cover) */
   .hero{
     position: relative;
     max-width: 390px;
     width: 100%;
     margin: 0 auto;
 
-    /* ảnh to, có thể crop 2 bên */
     background: url("/vivutoday.jpg") center / cover no-repeat !important;
-
-    /* khoảng trống trên / dưới để chứa form luôn trong hero */
-    padding: 60px 12px 40px;          /* chỉnh 50–70 / 30–50 tuỳ mắt */
+ 
+    padding: 60px 12px 40px;          
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -1713,12 +1706,10 @@ html, body, #root{
     min-height: auto !important;
   }
 
-  /* Tắt các pseudo / hack hero cũ nếu còn */
   .hero::before{
     content: none !important;
   }
 
-  /* Search-card: nằm trong hero, không absolute nữa */
   .hero .search-card{
     position: static !important;
     left: auto !important;
@@ -1729,10 +1720,9 @@ html, body, #root{
 
     width: 100% !important;
     max-width: 360px !important;
-    margin: 0 auto;                  /* card nằm giữa hero */
+    margin: 0 auto; 
   }
 
-  /* Section đầu tiên dưới hero: giảm khoảng cách cho gọn */
   .section:first-of-type{
     padding-top: 16px !important;
   }

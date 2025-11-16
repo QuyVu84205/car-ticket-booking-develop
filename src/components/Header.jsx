@@ -53,12 +53,12 @@ export default function Header() {
 
           {/* menu desktop (KHÔNG có mục admin) */}
           <ul className="menu">
-            <li><NavLink to="/home" end>Trang chủ</NavLink></li>
-            <li><NavLink to="/gioi-thieu">Giới thiệu</NavLink></li>
-            <li><NavLink to="/thongtinnhaxe">Thông tin nhà xe</NavLink></li>
-            <li><NavLink to="/bus-station">Bến xe</NavLink></li>
-            <li><NavLink to="/tuyen-duong">Tuyến đường</NavLink></li>
-            <li><NavLink to="/kiemtrave">Kiểm tra vé</NavLink></li>
+            <li><NavLink to="/home" end>TRANG CHỦ</NavLink></li>
+            <li><NavLink to="/gioi-thieu">GIỚI THIỆU</NavLink></li>
+            <li><NavLink to="/thongtinnhaxe">THÔNG TIN NHÀ XE</NavLink></li>
+            <li><NavLink to="/bus-station">BẾN XE</NavLink></li>
+            <li><NavLink to="/tuyen-duong">TUYẾN ĐƯỜNG</NavLink></li>
+            <li><NavLink to="/kiemtrave">KIỂM TRA VÉ</NavLink></li>
           </ul>
 
           {/* bên phải: search + CHIP ADMIN (chỉ hiện khi là admin) */}

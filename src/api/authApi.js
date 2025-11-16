@@ -6,7 +6,6 @@ const authApi = {
       method: "POST",
       body: data
     });
-    // Lưu token vào localStorage nếu login thành công
     if (response.data?.token) {
       localStorage.setItem('token', response.data.token);
     }
