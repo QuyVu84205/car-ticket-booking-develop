@@ -8,9 +8,11 @@ export default function Header() {
   const [openSearch, setOpenSearch] = useState(false); // search overlay
   const { pathname } = useLocation();
 
-  // lấy thông tin user (localStorage test)
-  const user = JSON.parse(localStorage.getItem("auth:user") || "null");
-  const isAdmin = user?.role === "admin";
+// lấy thông tin user (localStorage test)
+const user = JSON.parse(localStorage.getItem("auth:user") || "null");
+const isAdmin = user?.role === "admin";
+
+console.log("HEADER USER = ", user, "IS_ADMIN =", isAdmin);
 
   // đóng menu khi đổi route + khóa/unlock scroll
   useEffect(() => setOpen(false), [pathname]);
@@ -141,5 +143,6 @@ function SearchOverlay({ onClose }) {
         </form>
       </div>
     </div>
+    
   );
 }

@@ -1,34 +1,40 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { FaFacebookF, FaGoogle, FaApple } from "react-icons/fa";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import "../page/Signup.css"; // CSS riêng cho Signup
-import logo from "/logo.png"; // logo trong public
+import "../pages/login.css"; // dùng lại style của login
 
-function Signup() {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    password: "",
-  });
+const initialForm = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  password: "",
+};
 
+export default function Signup() {
+  const [formData, setFormData] = useState(initialForm);
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    // nếu field đang có lỗi thì xoá lỗi khi user sửa
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: undefined }));
+    }
   };
 
   const validate = () => {
-    let newErrors = {};
-    if (!formData.firstName.trim()) newErrors.firstName = "Họ không được để trống";
-    if (!formData.lastName.trim()) newErrors.lastName = "Tên không được để trống";
-    if (!formData.email.includes("@")) newErrors.email = "Email không hợp lệ";
+    const newErrors = {};
+    if (!formData.firstName.trim())
+      newErrors.firstName = "Họ không được để trống";
+    if (!formData.lastName.trim())
+      newErrors.lastName = "Tên không được để trống";
+    if (!formData.email.includes("@"))
+      newErrors.email = "Email không hợp lệ";
     if (!/^[0-9]{9,11}$/.test(formData.phone))
       newErrors.phone = "Số điện thoại không hợp lệ";
     if (formData.password.length < 6)
@@ -41,102 +47,158 @@ function Signup() {
     const newErrors = validate();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
-    } else {
-      try {
-        const response = await axios.post('http://localhost:8081/api/v1/auth/register', formData);
-        if (response.data.code === 201) {
-          alert("Đăng ký thành công!");
-          navigate("/login");
-        }
-      } catch (error) {
-        if (error.response) {
-          // Xử lý lỗi từ server
-          alert(error.response.data.message || "Đăng ký thất bại. Vui lòng thử lại!");
-        } else {
-          // Xử lý lỗi network/connection
-          alert("Không thể kết nối đến server. Vui lòng thử lại sau!");
-        }
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await axios.post(
+        "http://localhost:8081/api/v1/auth/register",
+        formData
+      );
+
+      if (response.data.code === 201) {
+        alert("Đăng ký thành công!");
+        navigate("/login");
+      } else {
+        alert(response.data.message || "Đăng ký thất bại!");
       }
+    } catch (error) {
+      if (error.response) {
+        alert(
+          error.response.data.message ||
+            "Đăng ký thất bại. Vui lòng thử lại!"
+        );
+      } else {
+        alert("Không thể kết nối đến server. Vui lòng thử lại sau!");
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="signup-page">
-      <div className="form-box">
-        <img src={logo} alt="logo" className="logo" />
-        <h2>ĐĂNG KÝ TÀI KHOẢN</h2>
+    <div className="login-page">
+      <div className="login-box">
+        <div className="login-header">
+          <img src="/logo.png" alt="Car Ticket Logo" className="logo" />
+          <h2>Car Ticket Booking</h2>
+          <p>Tạo tài khoản – Sẵn sàng mọi chuyến đi</p>
+        </div>
 
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="firstName"
-            placeholder="Họ"
-            value={formData.firstName}
-            onChange={handleChange}
-          />
-          {errors.firstName && <p className="error">{errors.firstName}</p>}
+        <form onSubmit={handleSubmit} className="login-form">
+          {/* Họ */}
+          <div
+            className={`input-group ${
+              errors.firstName ? "has-error" : ""
+            }`}
+          >
+            <span className="icon"></span>
+            <input
+              type="text"
+              name="firstName"
+              placeholder="Họ"
+              value={formData.firstName}
+              onChange={handleChange}
+            />
+            {errors.firstName && (
+              <div className="error-bubble">{errors.firstName}</div>
+            )}
+          </div>
 
-          <input
-            type="text"
-            name="lastName"
-            placeholder="Tên"
-            value={formData.lastName}
-            onChange={handleChange}
-          />
-          {errors.lastName && <p className="error">{errors.lastName}</p>}
+          {/* Tên */}
+          <div
+            className={`input-group ${
+              errors.lastName ? "has-error" : ""
+            }`}
+          >
+            <span className="icon"></span>
+            <input
+              type="text"
+              name="lastName"
+              placeholder="Tên"
+              value={formData.lastName}
+              onChange={handleChange}
+            />
+            {errors.lastName && (
+              <div className="error-bubble">{errors.lastName}</div>
+            )}
+          </div>
 
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-          {errors.email && <p className="error">{errors.email}</p>}
+          {/* Email */}
+          <div
+            className={`input-group ${
+              errors.email ? "has-error" : ""
+            }`}
+          >
+            <span className="icon"></span>
+            <input
+              type="email"
+              name="email"
+              placeholder="Nhập email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+            {errors.email && (
+              <div className="error-bubble">{errors.email}</div>
+            )}
+          </div>
 
-          <input
-            type="text"
-            name="phone"
-            placeholder="Điện thoại"
-            value={formData.phone}
-            onChange={handleChange}
-          />
-          {errors.phone && <p className="error">{errors.phone}</p>}
+          {/* Số điện thoại */}
+          <div
+            className={`input-group ${
+              errors.phone ? "has-error" : ""
+            }`}
+          >
+            <span className="icon"></span>
+            <input
+              type="text"
+              name="phone"
+              placeholder="Số điện thoại"
+              value={formData.phone}
+              onChange={handleChange}
+            />
+            {errors.phone && (
+              <div className="error-bubble">{errors.phone}</div>
+            )}
+          </div>
 
-          <input
-            type="password"
-            name="password"
-            placeholder="Mật khẩu"
-            value={formData.password}
-            onChange={handleChange}
-          />
-          {errors.password && <p className="error">{errors.password}</p>}
+          {/* Mật khẩu */}
+          <div
+            className={`input-group ${
+              errors.password ? "has-error" : ""
+            }`}
+          >
+            <span className="icon"></span>
+            <input
+              type="password"
+              name="password"
+              placeholder="Nhập mật khẩu"
+              value={formData.password}
+              onChange={handleChange}
+            />
+            {errors.password && (
+              <div className="error-bubble">{errors.password}</div>
+            )}
+          </div>
 
-          <button type="submit" className="btn-primary">
-            ĐĂNG KÝ NGAY
+          <button type="submit" className="btn-login" disabled={loading}>
+            {loading ? "Đang đăng ký..." : "Đăng ký"}
           </button>
         </form>
 
-        <div className="divider">Hoặc đăng nhập với</div>
+        <p className="footer-text">
+          Bạn đã có tài khoản?{" "}
+          <Link to="/login" className="login-link">
+            Đăng nhập ngay
+          </Link>
+        </p>
 
-        <div className="social-login">
-          <button className="btn facebook">
-            <FaFacebookF /> FACEBOOK
-          </button>
-          <button className="btn google">
-            <FaGoogle /> GOOGLE
-          </button>
-          <button className="btn apple">
-            <FaApple /> APPLE
-          </button>
-        </div>
-
-        <p>
-          Bạn đã có tài khoản? <a href="#">Đăng nhập ngay</a>
+        <p className="footer-text">
+          © {new Date().getFullYear()} Car Ticket Booking - All rights
+          reserved
         </p>
       </div>
     </div>
   );
 }
-
-export default Signup;

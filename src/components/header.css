@@ -212,10 +212,9 @@
   margin: 0;
   padding: 0;
 
-  flex: 1;                   /* 🔹 cho menu chiếm hết khoảng giữa brand & nav-right */
+  flex: 1;                
 }
 
-/* SEARCH + ADMIN BÊN PHẢI */
 .nav-right {
   display: flex;
   align-items: center;
@@ -223,7 +222,6 @@
   margin-left: 32px;
 }
 
-/* không đẩy admin-chip sang phải nữa, để nav-right tự đứng bên phải */
 .admin-chip {
   border: 1px solid #0b5ed7;
   padding: 6px 10px;
@@ -254,16 +252,14 @@
 .topbar .container > span {
   margin-left: 300px;
 }
-/* 1. Đẩy cả cụm MENU + SEARCH + ADMIN sang phải so với logo */
 .menu {
-  margin-left: 90px;   /* tăng/giảm số này để dịch sang phải nhiều/ít */
+  margin-left: 90px;  
 }
 
-/* 2. Khoảng cách giữa menu và kính lúp + Admin */
 .nav-right {
-  margin-left: 30px;   /* khoảng trống giữa item cuối của menu và kính lúp */
+  margin-left: 30px;  
 }
-/* Đẩy cụm hotline (email + 1900 0152) sang trái một chút */
+
 .tb-right {
-  margin-right: 350px;  /* chỉnh 20 / 30 / 50 tuỳ ý cho vừa mắt */
+  margin-right: 350px; 
 }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // 👈 thêm để điều hướng
+import { useNavigate, Link } from "react-router-dom";
 import "./login.css";
 import authApi from "../api/authApi.js";
 export default function Login() {
@@ -61,6 +61,12 @@ export default function Login() {
             Đăng nhập
           </button>
         </form>
+<p className="footer-text">
+  Bạn chưa có tài khoản?{" "}
+  <Link to="/signup" className="login-link">
+    Đăng ký ngay
+  </Link>
+</p>
 
         <p className="footer-text">
           © {new Date().getFullYear()} Car Ticket Booking – All rights reserved
